@@ -64,4 +64,7 @@ export const ELEMENTS = {
   validateStorebtn: '.vtex-omnishipping-1-x-PickupPointName',
   selectPixOption:
     '#payment-group-instantPaymentPaymentGroup > .payment-group-item-text',
+  modalPix: '.VTEX-PIX__modal-container',
+  buttonBuy:
+    '[data-bind="fadeVisible: !window.router.sac.isActive() && window.paymentData.isPaymentButtonVisible(), click: submit, disable: window.checkout.disablePaymentButton"]',
 }

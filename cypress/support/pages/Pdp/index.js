@@ -17,6 +17,7 @@ class PdpPage {
     cy.wait(5000)
   }
   clickConfirmModalVariation() {
+    cy.clearCart()
     cy.get(elPdpPage.buttonOpenModalVariation)
       .first()
       .should('exist')

@@ -10,7 +10,9 @@ Feature: Smoke Test
     And I proceed to checkout
     And I fill in the checkout data
     And I fill the address data
-    Then I select Pix option
+    And I select Pix option
+    And I click button pagament
+    Then The modal pix is displayed
 
   Scenario: Validate price block
     Given I'm on the product detail page

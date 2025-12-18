@@ -21,10 +21,8 @@ const invalidEmailFaker = faker.internet.email(
   lastNameFaker,
   '@invalidprovider',
 )
-const passwordFaker = faker.internet.password(16)
 
 /*Address Data*/
-const customStreetFaker = faker.helpers.replaceSymbolWithNumber('###-### #####')
 const customNumberFaker = faker.internet.password(4) //faker.helpers.replaceSymbolWithNumber('##')
 const complementFaker = faker.address.direction()
 
@@ -42,7 +40,6 @@ import accessData from '../../fixtures/accessData.json'
 import product from '../../fixtures/product.json'
 import personalData from '../../fixtures/personalData.json'
 import siteTitle from '../../fixtures/siteTitle.json'
-import cardsData from '../../fixtures/cardsData.json'
 import Login from '../pages/Login'
 
 Given("I'm on the home page", () => {
@@ -61,30 +58,8 @@ Given('I have two items in the cart with {} units each one', (quantity) => {
   CartPage.accessCartPageWithProducts1and2(Number(quantity))
 })
 
-Given('I add two items in the cart', () => {
-  PdpPage.clickBtnAddToCart()
-  CartPage.accessCartPage()
-  CartPage.validateFnImgProduct(product[0].Product, 'visible')
-  PdpPage.urlPDP(product[1].url)
-  PdpPage.clickBtnAddToCart()
-  CartPage.accessCartPage()
-  CartPage.validateFnImgProduct(product[1].Product, 'visible')
-})
-
 Given("I'm on the product detail page", () => {
   PdpPage.urlPDP(Cypress.env('produto')[0].link)
-})
-
-Given('I am on the product detail page with a color variant', () => {
-  PdpPage.urlPDP(Cypress.env('produto-02-url'))
-})
-
-Given("I'm on the cart with one product and {} units", (quantity) => {
-  CartPage.accessCartPageWithProduct(
-    product[0].salesChannel,
-    product[0].SKU,
-    quantity,
-  )
 })
 
 When('I do click button login', () => {
@@ -121,22 +96,6 @@ When('I do login using incorrect email', () => {
   Login.clickBtnEnter()
 })
 
-When('I do Loggout from the site', () => {
-  Header.clickBtnLoggedUser()
-  Header.clickBtnLogoff()
-  if (Cypress.env('environment') == 'mobile') {
-    MyAccount.clickConfirmExitPopup('login')
-  }
-})
-
-When('I request a password recover', () => {
-  HomePage.clickBtnLogin()
-  HomePage.clickBtnLoginWithEmailPassword()
-  HomePage.clickRecoveryPassword()
-  HomePage.typeEmailRecoveryPassword(correctEmailFaker)
-  HomePage.clickBtnSendRecoveryPassword()
-})
-
 When('I search for the product on the search bar', () => {
   Header.typeSearchBar(Cypress.env('produto')[0].name)
 })
@@ -159,14 +118,6 @@ When('Add product to cart', () => {
 
 When('I add the product variation to the cart', () => {
   PdpPage.clickConfirmModalVariation()
-})
-
-When('I calculate shipping and proceed to checkout', () => {
-  CartPage.clickBtnCalculateShipping()
-  CartPage.selectCmbState(addressData[0].state)
-  CartPage.selectCmbCity(addressData[0].city)
-  CartPage.validateLblShippingCost('calculated')
-  CartPage.clickBtnCartToOrderForm()
 })
 
 When('I proceed to checkout', () => {
@@ -235,10 +186,6 @@ When('I fill in the checkout data without phone number', () => {
   CheckoutPage.clickBtnGoToShipping()
 })
 
-When('I select the payment option Mercado Pago', () => {
-  CheckoutPage.selectMercadoPago()
-})
-
 When('I add the product to the cart', () => {
   PdpPage.clickBtnAddToCart()
   CartPage.accessCartPage()
@@ -263,47 +210,9 @@ When('I reduce the quantity for {} units', (quantity) => {
   CartPage.clickXpFnDecrementQuantity(Cypress.env('produto')[0].name, quantity)
 })
 
-When('I access the product page {}', (product) => {
-  Header.typeSearchBar(product)
-  PLPPage.clickFnSrcResult(product)
-})
-
-When('The page is full loaded', () => {
-  PdpPage.validateBtnAddToCart()
-})
-
 When('I type a invalid discount coupon', () => {
   CartPage.clickBtnCartCouponAdd()
   CartPage.typeInputCartCoupon(invalidCoupon)
-})
-
-When('I access the about Electrolux menu', () => {
-  HomePage.clickMenuCategories()
-  HomePage.clickAboutElectrolux()
-})
-Then('The filter parameter must be in the url {}', (value) => {
-  PLPPage.validateFilterInUrl(value)
-})
-
-When('I access the atendimento Electrolux menu', () => {
-  HomePage.clickMenuCategories()
-  HomePage.clickAtendimentoElectrolux()
-})
-
-When('I fill visa card number', () => {
-  CheckoutPage.typeCardNumber(cardsData.visa[0].number)
-})
-
-When('I fill american express card number', () => {
-  CheckoutPage.typeCardNumber(cardsData.americanExpress[0].number)
-})
-
-When('I fill mastercard card number', () => {
-  CheckoutPage.typeCardNumber(cardsData.mastercard[0].number)
-})
-
-When('I fill dinners card number', () => {
-  CheckoutPage.typeCardNumber(cardsData.diners[0].number)
 })
 
 When('I edit my personal data - Gender M', () => {
@@ -328,16 +237,6 @@ When('I edit my personal data - Gender F', () => {
   MyAccount.clickSavePersonalData()
 })
 
-When('I edit my personal data - Without Gender', () => {
-  MyAccount.clickEditPersonalData()
-  MyAccount.typeName(firstNameFaker)
-  MyAccount.typeLastName(lastNameFaker)
-  MyAccount.typeDocument(personalData[0].documentID)
-  MyAccount.typeHomePhone(personalData[0].phone)
-  MyAccount.typeBirthDate(personalData[0].birthDate)
-  MyAccount.clickSavePersonalData()
-})
-
 When('I calculate valid shipping', () => {
   CartPage.typeZipCode(addressData[0].zipCode)
 })
@@ -354,6 +253,7 @@ When('I calculate shipping unavailable', () => {
 
 And('I fill the address data', () => {
   CheckoutPage.typeZipCode(addressData[0].zipCode)
+  CheckoutPage.typeFullNameShipping(firstNameFaker)
   CheckoutPage.typeCustomNumberShipping()
   CheckoutPage.clickBtnGoToPayment()
 })
@@ -374,15 +274,6 @@ Then('Must be informed that the email is in a invalid format', () => {
 
 Then('I must not be logged into the site', () => {
   Header.validateUserLogged('not logged', accessData.cookieAuth)
-})
-
-Then('I input and confirm a new password', () => {
-  HomePage.typeNewPasswordRecoveryPassword(passwordFaker)
-  HomePage.typeConfirmNewPasswordRecoveryPassword(passwordFaker)
-})
-
-Then('The order must be successfully', () => {
-  CheckoutPage.clickBtnBuyNow()
 })
 
 Then('the product should be displayed in the cart', () => {
@@ -417,7 +308,6 @@ Then('I validate if the quantity has been changed to {}', (quantity) => {
 Then(
   'I validate if the quantity of product one minishelf has been changed to {}',
   (quantity) => {
-    // Product Minishelf one item Cart
     CartPage.validateXpFnItemQuantity(product[7].Product, quantity)
   },
 )
@@ -425,7 +315,6 @@ Then(
 Then(
   'I validate if the quantity of product second minishelf has been changed to {}',
   (quantity) => {
-    // Product Minishelf second item Cart
     CartPage.validateXpFnItemQuantity(product[8].Product, quantity)
   },
 )
@@ -476,11 +365,6 @@ When('I select the filter Cor preto', () => {
 })
 When('I select the ordination by {}', (order) => {
   PLPPage.selectOrderBy(order)
-})
-
-Then('The filter parameter must be checked Cor preto', () => {
-  PLPPage.validateFilterChecked('preto')
-  PLPPage.validateFilterInUrl('preto')
 })
 
 Then('the store logo has a link to homepage', () => {
@@ -551,29 +435,6 @@ Then('I check if the address was edited correctly', () => {
 
 Then('I check that I am in the correct page', () => {
   MyAccount.validateMyOrdersPage()
-})
-
-Then('I check if the address was deleted correctly', () => {
-  MyAccount.validateAddressTable()
-  MyAccount.validateDeletedAddressStreet(customStreetFaker)
-  MyAccount.validateDeletedAddressComplement(complementFaker)
-  MyAccount.validateDeletedAddressCity(addressData[1].city)
-})
-
-Then('checkbox MASTERCARD must be selected', () => {
-  CheckoutPage.validateCreditCardFlag('Mastercard')
-})
-
-Then('checkbox VISA must be selected', () => {
-  CheckoutPage.validateCreditCardFlag('Visa')
-})
-
-Then('checkbox DINNERS must be selected', () => {
-  CheckoutPage.validateCreditCardFlag('Diners')
-})
-
-Then('checkbox AMERICANEXPRESS must be selected', () => {
-  CheckoutPage.validateCreditCardFlag('American Express')
 })
 
 Then('mandatory firstname alert is displayed', () => {
@@ -655,31 +516,8 @@ And('I edit an address', () => {
   MyAccount.clickSaveEditedAddress()
 })
 
-And('I access the edition address page', () => {
-  MyAccount.clickEditAddress()
-})
-
 And('I see the lead capture modal', () => {
   CrossPage.closeLeadCaptureModal()
-})
-
-Then('I select bank invoice', () => {
-  CheckoutPage.selectBankInvoice()
-})
-
-And('Check release version', () => {
-  // eslint-disable-next-line cypress/no-unnecessary-waiting
-  cy.wait(2500)
-  cy.get('link[href*="theme@"]')
-    .should('exist')
-    .invoke('attr', 'href')
-    .then((href) => {
-      cy.log('HREF encontrado:', href)
-      // eslint-disable-next-line cypress/no-unnecessary-waiting
-      cy.wait(3000)
-    })
-  // eslint-disable-next-line cypress/no-unnecessary-waiting
-  cy.wait(2000)
 })
 
 When('Open the minicart', () => {
@@ -694,18 +532,6 @@ Then('Check if the cart is empty', () => {
   MinicartPage.validateTextEmptyMinicart()
 })
 
-And('I add the product to the cart via floating button', () => {
-  PdpPage.clickFloatingbutton()
-})
-
-When("I'm on the PLP with product unavailable", () => {
-  PLPPage.visitPLP(PLP.url, siteTitle.title)
-})
-
-And('I validate the text from product unavailable', () => {
-  PLPPage.searchUnavailableProduct()
-})
-
 When('Click in a product from shelf', () => {
   HomePage.clickProductFromShelf()
 })
@@ -716,29 +542,6 @@ And('Add a product to minicart from minishelf', () => {
 
 Then('Validate the language on minicart', () => {
   MinicartPage.validateLanguageMinicart()
-})
-
-And('On the product page calculate unavailable shipping', () => {
-  PdpPage.clickBtnCalcShippingModal()
-  PdpPage.typeZipCode(addressData[3].zipCode)
-  PdpPage.clickBtnCalcShipping()
-})
-
-And('The unavailable shipping table should be displayed', () => {
-  PdpPage.clickBtnCloseShippingModalMobile()
-  PdpPage.validateUnavailableShippingDataTable()
-})
-
-And('I try to add the product to the cart', () => {
-  PdpPage.addUnavailableProductToCart()
-})
-
-And('I validate I am still on PDP', () => {
-  PdpPage.validateStillPdp(Cypress.env('produto-01-url'))
-})
-
-And('I try to add the product to the cart by floating button', () => {
-  PdpPage.addUnavailableProductbyFloatingbutton()
 })
 
 And('I am on the PDP with minishelf', () => {
@@ -775,6 +578,7 @@ Then('I remove all items from minicart', () => {
 })
 
 And('Open the minicart on home', () => {
+  // eslint-disable-next-line cypress/no-unnecessary-waiting
   cy.wait(20000)
   Header.cl()
 })
@@ -812,69 +616,8 @@ Then('I validate the successful registration message notify me', () => {
   PdpPage.validateMessageNotifyMe()
 })
 
-Given('Access a PLP that contains products with free shipping', () => {
-  PLPPage.visitPLP(PLP.url_plp_toggle, siteTitle.title)
-})
-
-When('Turn on the free shipping toggle', () => {
-  PLPPage.clickToggleFreeShipping()
-})
-
-Then('Validate cards with the information Free shipping', () => {
-  PLPPage.validateTagToggleFreeShipping()
-})
-
-When('I access the reduced header', () => {
-  HomePage.displayMenuReduced()
-})
-
-And('I access the PLP', () => {
-  PLPPage.accessPlpPageFromMenu()
-})
-
-And('I access a PDP with options voltage', () => {
-  PLPPage.listOption()
-  PLPPage.selectProductFromPlp()
-})
-
 Then('each variation option should update the product name', () => {
   PdpPage.validateSizeButtonsNavigation()
-})
-
-Then('the product name should remain the same', () => {
-  PdpPage.validateProductNameDidNotChange()
-})
-
-Then('I validate the alert message', () => {
-  PdpPage.validateAlertMessage()
-})
-
-When('I click on the anchor with the description summary', () => {
-  PdpPage.clickBtnAnchorDescriptionSummary()
-})
-
-Then('I am redirected to the product summary', () => {
-  PdpPage.validateRedirectProductSummary()
-})
-
-Given('I am on the product detail page with R2U and video options', () => {
-  PdpPage.urlPDP(Cypress.env('produto-03-url'))
-})
-
-When('I click on the video option', () => {
-  PdpPage.videoButtonClick()
-})
-
-And('I check the video displayed on the modal', () => {
-  PdpPage.videoModal()
-})
-
-And('I click on the R2U option', () => {
-  PdpPage.r2UButton()
-})
-
-Then('I check the R2U displayed on the modal', () => {
-  PdpPage.r2UModal()
 })
 
 And('I open the payment options modal', () => {
@@ -886,25 +629,6 @@ Then('I click to close the payment options modal', () => {
   PdpPage.clickBtnClosePaymentOptionsModal()
 })
 
-And("Select 2 products by clicking Compare on each item's cards", () => {
-  PLPPage.clickCompareCard(product[2].id_plp_compare)
-  cy.wait(10000)
-  Header.typeSearchBarPLP(product[0].Product)
-  cy.wait(10000)
-  PLPPage.clickCompareCard(product[0].id_plp_compare)
-  cy.wait(5000)
-})
-
-And('I click on the Compare button of the modal', () => {
-  PLPPage.clickBtnCompareModal()
-})
-
-Then('I check the selected products on the product comparison page', () => {
-  PLPPage.checkTitleProductComparisonPage()
-  PLPPage.checkFirstImageProductComparisonPage()
-  PLPPage.checkSecondImageProductComparisonPage()
-})
-
 When('I type a valid discount coupon', () => {
   CartPage.clickBtnCartCouponAdd()
   CartPage.typeInputCartValidCoupon(validCoupon)
@@ -912,22 +636,6 @@ When('I type a valid discount coupon', () => {
 
 Then('The discount coupon should be valid', () => {
   CartPage.validateValidDiscountCoupon()
-})
-
-And('I click on the  cart share option', () => {
-  CartPage.clickCartShareOption()
-})
-
-Then('The cart share modal is displayed', () => {
-  CartPage.validateShareModal()
-})
-And('I type a valid discount coupon on the checkout', () => {
-  CheckoutPage.clickBtnCheckoutCouponAdd()
-  CheckoutPage.typeInputCheckoutValidCoupon(validCoupon)
-})
-
-Then('The discount coupon should be valid on the checkout', () => {
-  CheckoutPage.validateValidDiscountCouponOnCheckout()
 })
 
 And('I click on button from checkout', () => {
@@ -988,14 +696,6 @@ Given('I am on the product details page with voltage change', () => {
   PdpPage.urlPDP(product[16].url)
 })
 
-And('I click on the voltage option', () => {
-  PdpPage.clickVoltageOption(product[14].SKU[0])
-})
-
-And('I click on add warranty extended button', () => {
-  PdpPage.addWarrantyExtended()
-})
-
 Then('I validate if the product with voltage is in the cart', () => {
   CartPage.validateFnImgProduct(product[16].Product, 'visible')
 })
@@ -1014,29 +714,6 @@ And('I add the product with warranty extended to the cart', () => {
   CartPage.accessCartPage()
 })
 
-And('I click on the product color variant', () => {
-  PdpPage.clickColorVariant()
-})
-
-And('I click to add the product frequency', () => {
-  PdpPage.clickProductFrequency()
-  PdpPage.selectProductFrequency()
-  PdpPage.clickConfirmProductFrequency()
-})
-
-When('I add the product to intermediate page', () => {
-  PdpPage.clickBtnAddToIntermediatePage()
-})
-
-And('Middle page of the extended warranty I click to go to the cart', () => {
-  PdpPage.clickButtonAddToCart()
-})
-
-Then('The recurrence and product are added to the cart', () => {
-  CartPage.validateRecurrenceAdded()
-  //CartPage.validateFnImgProduct(Cypress.env('produto-02-name'), 'visible')
-})
-
 When('I search for the product with in-store pickup in the search bar', () => {
   Header.typeSearchBar(Cypress.env('produto')[1].name)
 })
@@ -1053,60 +730,12 @@ And('Click on Pick up in store', () => {
   CartPage.clickbtnPickUoInStore()
 })
 
-When('I increase the quantity for 2 units', () => {
-  CartPage.clickIncreaseQuantity()
+When('I increase the quantity for {} units', (quantity) => {
+  CartPage.clickIncreaseQuantity(quantity)
 })
 
-And('I decrease the quantity for 1 units', () => {
-  MinicartPage.clickDecreaseQuantity()
-})
-
-And('Click collect in store', () => {
-  CheckoutPage.clickInStore()
-})
-
-And('Search by address', () => {
-  CheckoutPage.searchAddress()
-})
-
-And('I put the zip code', () => {
-  CheckoutPage.typeZipCode(addressData[4].zipCode)
-})
-
-And('Choose a store to pick up', () => {
-  CheckoutPage.chooseStore()
-})
-
-And('I click on the withdraw button', () => {
-  CheckoutPage.confirmStore()
-})
-
-Then('Check the selected store', () => {
-  CheckoutPage.validateStore()
-})
-
-And('Click on a category {}', (category) => {
-  if (Cypress.env('environment') == 'mobile') {
-    // access category Eletrodomesticos
-    HomePage.clickItemMenuCategories()
-  }
-  HomePage.clickItemSubMenuCategories(category)
-})
-
-And('Click on the header menu', () => {
-  HomePage.clickMenuCategories()
-})
-
-When('Click on the image to open the modal', () => {
-  PdpPage.clickProductImage()
-})
-
-Then('I check if the image is visible in the modal', () => {
-  PdpPage.validateProductImageModal()
-})
-
-And('Click on the first card to access the PDP', () => {
-  PLPPage.clickFirstCardProduct()
+And('I decrease the quantity for {} units', (quantity) => {
+  MinicartPage.clickDecreaseQuantity(quantity)
 })
 
 Then('I do Loggout from the site in MyAccount', () => {
@@ -1117,8 +746,16 @@ Then('I do Loggout from the site in MyAccount', () => {
   MyAccount.clickConfirmExitPopup('myaccount')
 })
 
-Then('I select Pix option', () => {
+When('I select Pix option', () => {
   CheckoutPage.selectPixOption()
+})
+
+When('I click button pagament', () => {
+  CheckoutPage.clickBtnGoToBuy()
+})
+
+When('The modal pix is displayed', () => {
+  CheckoutPage.validateModalPix()
 })
 
 Given('I am on the product detail page with variations', () => {

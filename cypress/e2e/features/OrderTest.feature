@@ -10,4 +10,6 @@ Feature: Order tests
     And I proceed to checkout
     And I fill in the checkout data
     And I fill the address data
-    Then I select Pix option
+    And I select Pix option
+    And I click button pagament
+    Then The modal pix is displayed

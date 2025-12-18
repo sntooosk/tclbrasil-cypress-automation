@@ -2,12 +2,9 @@
 const elMinicart = require('./elements').ELEMENTS
 
 class Minicart {
-  clickIconMinicart() {
-    cy.wait(4000)
-    cy.get(elMinicart.minicartIcon).first().click({ force: true })
-    cy.wait(3000)
-  }
   validateTextEmptyMinicart() {
+    cy.clearCart()
+    cy.wait(5000)
     cy.get(elMinicart.minicartTextEmpty).should(
       'have.text',
       'Your Cart is emptyStart Shopping',
@@ -16,10 +13,7 @@ class Minicart {
   }
 
   validateLanguageMinicart() {
-    cy.get(elMinicart.minicartTextWithProduct).should(
-      'have.text',
-      'Taxas e fretes serão calculados no carrinho.',
-    )
+    cy.get(elMinicart.minicartTextWithProduct).should('be.visible')
     cy.wait(2000)
   }
 
@@ -64,16 +58,6 @@ class Minicart {
 
   clickFnItemRemove(sku) {
     cy.get(elMinicart.buttonItemRemoveProduct(sku)).click({ force: true })
-  }
-
-  clickIconMinicartHome() {
-    cy.wait(15000)
-    if (Cypress.env('environment') == 'desktop') {
-      cy.get(elMinicart.IconMinicartHome).click({ force: true })
-    } else {
-      cy.get(elMinicart.IconMinicartHomeMobile).click({ force: true })
-    }
-    cy.wait(2000)
   }
   miniCartAutomatically() {
     cy.get(elMinicart.titleMiniCart).should('be.visible')

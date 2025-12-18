@@ -40,7 +40,7 @@ Feature: Product Detail Page tests
     Given I am on the product detail page with variations
     Then each variation option should update the product name
 
-  Scenario: Validate Payment option modal and reviews
+  Scenario: Validate Payment option modal
     Given I'm on the product detail page
     When I open the payment options modal
     Then I click to close the payment options modal
