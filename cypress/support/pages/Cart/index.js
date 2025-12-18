@@ -56,13 +56,6 @@ class CartPage {
     cy.get(elCartPage.buttonReturnToCart).should('exist').click({ force: true })
   }
 
-  clickLogoToHome() {
-    cy.wait(5000)
-    cy.get(elCartPage.buttonLogoReturnToHome)
-      .should('exist')
-      .click({ force: true })
-  }
-
   validateProductInCartBySku(sku, status) {
     switch (status) {
       case 'visible':
@@ -81,7 +74,9 @@ class CartPage {
   }
 
   clickFnItemRemove(skuid) {
-    cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should('not.be.visible')
+    cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should(
+      'not.be.visible',
+    )
     cy.get(elCartPage.buttonItemRemoveProduct(skuid)).should('exist')
     cy.get(elCartPage.buttonItemRemoveProduct(skuid))
       .should('be.visible')
@@ -89,13 +84,17 @@ class CartPage {
   }
 
   clickClearCart(skuid1, skuid2) {
-    cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should('not.be.visible')
+    cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should(
+      'not.be.visible',
+    )
     cy.get(elCartPage.buttonItemRemoveProduct(skuid1)).should('exist')
     cy.get(elCartPage.buttonItemRemoveProduct(skuid1))
       .should('be.visible')
       .click({ force: true })
 
-    cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should('not.be.visible')
+    cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should(
+      'not.be.visible',
+    )
     cy.get(elCartPage.buttonItemRemoveProduct(skuid2)).should('exist')
     cy.get(elCartPage.buttonItemRemoveProduct(skuid2))
       .should('be.visible')
@@ -155,9 +154,13 @@ class CartPage {
   }
 
   validateMsgToastInvalid(coupon) {
-    cy.contains(elCartPage.msgInvalidDiscountCoupon, `Cupom ${coupon} inválido`, {
-      timeout: 10000,
-    })
+    cy.contains(
+      elCartPage.msgInvalidDiscountCoupon,
+      `Cupom ${coupon} inválido`,
+      {
+        timeout: 10000,
+      },
+    )
   }
 
   validateValidDiscountCoupon() {

@@ -1,27 +1,16 @@
 export const ELEMENTS = {
-  labelEmail:
-    '.vtex-my-account-1-x-emailContainer > .vtex-my-account-1-x-dataEntryChildren',
-  menuLinkProfile: 'a[href="#/profile"]',
-  menuLinkExit: '[class*="vtex-my-account-"][class*="-x-menuLink"]',
   buttonAddNewAddress:
     '//div[@class="db-m dn"][not(contains(@style,"display:none"))]//a[(@href="#/addresses/new")]',
   buttonEditAddress:
     '(//div[contains(@class,"vtex-button__label flex items-center justify-center h-100 ph5")][normalize-space()="Editar"])',
   btnDeleteAddress:
     '//div[contains(@class, "vtex-button__label") and contains(text(), "Remover endereço")]',
-  labelEditAddress: '//span[@class="c-link pointer"]',
   buttonSaveEditedAddress: '.vtex-button__label',
   buttonSaveNewAddress: '.vtex-button__label',
-  comboBoxState: 'select[name=state]',
   inputZipCode: 'input[name=postalCode]',
-  comboBoxCity: 'select[name=city]',
-  comboBoxNeighborhood: 'select[name=neighborhood]',
-  inputStreet: 'input[name=street]',
   inputNumber: 'input[name=number]',
   inputComplement: 'input[name=complement]',
-  inputNeighborhood: 'input[name=neighborhood]',
   messageInfo: '.vtex-alert > .flex-ns > .items-start',
-  inputReceiverName: 'input[name=receiverName]',
   tableMyAddress: '.vtex-my-account-1-x-addressBox',
   labelMyAddressSavedStreet:
     '.vtex-my-account-1-x-boxContainerBody span.street',
@@ -32,7 +21,6 @@ export const ELEMENTS = {
   labelMyAddressSavedComplement:
     '.vtex-my-account-1-x-boxContainerBody span.complement',
   labelMyAddressSavedCity: '.vtex-my-account-1-x-boxContainerBody span.city',
-  labelMyAddressSavedState: '.vtex-my-account-1-x-boxContainerBody span.state',
   labelMyAddressSavedCountry:
     '.vtex-my-account-1-x-boxContainerBody span.country',
 
@@ -58,8 +46,6 @@ export const ELEMENTS = {
     '.vtex-my-account-1-x-phoneNumberContainer > .flex-auto > .light',
   labelHomePhone:
     '.vtex-my-account-1-x-phoneNumberContainer > .w-50-ns > .light',
-  //MyOrders
-  labelMyOrders: '.vtex-pageHeader__title', //index 0
   buttonPopupExit: '.bg-action-primary > .vtex-button__label',
   clickBtnExit: '.vtex-my-account-1-x-menuLink',
 }
