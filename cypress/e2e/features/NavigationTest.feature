@@ -25,7 +25,7 @@ Feature: Navigation tests
     And I see the lead capture modal
     When I search for a non-existent product
     Then No results should be displayed
-
+@focus
   Scenario: Test the newsletter
     And I'm on the home page
     And I do fill in the newsletter form

@@ -253,6 +253,7 @@ When('I calculate shipping unavailable', () => {
 
 And('I fill the address data', () => {
   CheckoutPage.typeZipCode(addressData[0].zipCode)
+  CheckoutPage.typeFullNameShipping(firstNameFaker)
   CheckoutPage.typeCustomNumberShipping()
   CheckoutPage.clickBtnGoToPayment()
 })
@@ -745,8 +746,16 @@ Then('I do Loggout from the site in MyAccount', () => {
   MyAccount.clickConfirmExitPopup('myaccount')
 })
 
-Then('I select Pix option', () => {
+When('I select Pix option', () => {
   CheckoutPage.selectPixOption()
+})
+
+When('I click button pagament', () => {
+  CheckoutPage.clickBtnGoToBuy()
+})
+
+When('The modal pix is displayed', () => {
+  CheckoutPage.validateModalPix()
 })
 
 Given('I am on the product detail page with variations', () => {

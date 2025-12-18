@@ -1,17 +1,14 @@
 export const ELEMENTS = {
-  menuCategories:
-    '[class*="electrolux-custom-mega-menu-app-"][class*="-x-titleMenu"]',
+  menuCategories: '.HeaderNavBarLinks_EmphasisPrincipalLink__JlURY',
   menuCategoriesMobile: '[href="#menu-drawer-mobile"]',
 
   itemCategoryMenu: () => `.vtex-menu-2-x-styledLinkContent`,
 
-  inputFirstName: '.electrolux-form-footer-newsletter-3-x-nameInputContainer',
-  inputClientEmail:
-    '.electrolux-form-footer-newsletter-3-x-emailInputContainer',
-  formSubmitButton: '.electrolux-form-footer-newsletter-3-x-formSubmitButton',
-  sucessMessage:
-    'span[class*="electrolux-form-footer-newsletter-"][class*="-x-errorTitle"]',
-  formFooterNewslleter:
-    '.electrolux-form-footer-newsletter-3-x-footerNewsletter',
+  inputFirstName:
+    '[data-testid="fs-newsletter-content"] > :nth-child(1) > [data-testid="fs-input"]',
+  inputClientEmail: ':nth-child(2) > [data-testid="fs-input"]',
+  formSubmitButton: '[data-testid="fs-button"]',
+  sucessMessage: '[data-fs-toast-message="true"]',
+  formFooterNewslleter: '[data-testid="fs-newsletter"]',
   itemShelf: '#mais-vendidos-carousel-item-0 > [data-testid="fs-product-card"]',
 }

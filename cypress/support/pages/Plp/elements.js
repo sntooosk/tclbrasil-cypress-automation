@@ -11,8 +11,7 @@ export const ELEMENTS = {
     `#gallery-layout-container img[alt*='${product}']`,
   imageSourceResultCompreJunto:
     '.vtex-product-summary-2-x-productNameContainer',
-  labelResultEmpty:
-    '[class*="vtex-search-result-"][class*="-x-galleryTitle--layout"]',
+  labelResultEmpty: '.EmptySearchPage_empty-search__warning__Zc3z3',
   buttonFilter: '.vtex-search-result-3-x-filterPopupButton',
   popupFilterItems: '.vtex-search-result-3-x-accordionFilterItem',
   checkBoxFIlterItems: '[data-testid="undefined-accordion-panel-checkbox"]',

@@ -25,7 +25,6 @@ Feature: Login tests
     When I do login using invalid format email
     Then Must be informed that the email is in a invalid format
 
-  @focus
   Scenario: Loggout
     When I do login using correct email and password
     And I Access the profile page

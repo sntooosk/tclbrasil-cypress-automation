@@ -35,7 +35,7 @@ Feature: My Account tests
     And I Access the address page
     And I remove an address
     Then I check the removal success message
-@focus
+
   Scenario: Loggout in MyAccount
     And I Access the profile page
     When I do Loggout from the site in MyAccount

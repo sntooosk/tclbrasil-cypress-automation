@@ -26,7 +26,6 @@ Feature: Checkout tests
     And I fill in the checkout data without phone number
     Then mandatory phone number alert is displayed
 
-  @focus
   Scenario: In-store pickup finalize purchase
     Given I'm on the home page
     When I search for the product on the search bar
@@ -36,4 +35,6 @@ Feature: Checkout tests
     And I proceed to checkout
     And I fill in the checkout data
     And I fill the address data
-    Then I select Pix option
+    And I select Pix option
+    And I click button pagament
+    Then The modal pix is displayed

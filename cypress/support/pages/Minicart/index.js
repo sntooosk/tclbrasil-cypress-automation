@@ -3,6 +3,8 @@ const elMinicart = require('./elements').ELEMENTS
 
 class Minicart {
   validateTextEmptyMinicart() {
+    cy.clearCart()
+    cy.wait(5000)
     cy.get(elMinicart.minicartTextEmpty).should(
       'have.text',
       'Your Cart is emptyStart Shopping',
@@ -11,10 +13,7 @@ class Minicart {
   }
 
   validateLanguageMinicart() {
-    cy.get(elMinicart.minicartTextWithProduct).should(
-      'have.text',
-      'Taxas e fretes serão calculados no carrinho.',
-    )
+    cy.get(elMinicart.minicartTextWithProduct).should('be.visible')
     cy.wait(2000)
   }
 

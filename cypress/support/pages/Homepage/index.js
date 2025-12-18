@@ -65,7 +65,7 @@ class HomePage {
   validateMessage() {
     cy.get(elHomepage.sucessMessage).should(
       'have.text',
-      'Cadastro realizado com sucesso!',
+      'Obrigado por se inscrever na nossa newsletter!',
     )
   }
 

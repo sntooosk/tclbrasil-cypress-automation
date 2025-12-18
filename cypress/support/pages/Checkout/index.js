@@ -98,7 +98,9 @@ class CheckoutPage {
       .should('be.enabled')
       .click({ force: true })
   }
-
+  clickBtnGoToBuy() {
+    cy.get(elCheckoutPage.buttonBuy).should('be.enabled').click({ force: true })
+  }
   selectAddressTypeShipping(addressType) {
     cy.get(elCheckoutPage.SHIPPING_DATA.cmbAddressType, { timeout: 3000 })
       .should('be.enabled')
@@ -373,6 +375,9 @@ class CheckoutPage {
     cy.get(elCheckoutPage.validateStorebtn, { timeout: 10000 }).should(
       'be.visible',
     )
+  }
+  validateModalPix() {
+    cy.get(elCheckoutPage.modalPix, { timeout: 10000 }).should('be.visible')
   }
 
   selectPixOption() {
