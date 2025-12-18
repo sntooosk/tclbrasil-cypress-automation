@@ -1,6 +1,4 @@
 export const ELEMENTS = {
-  minicartIcon:
-    '.electrolux-minicart-3-x-minicartIconContainer > .vtex-store-icons-0-x-cartIcon',
   minicartTextEmpty: '[data-testid="fs-empty-state"]',
   minicartTextWithProduct:
     '.vtex-flex-layout-0-x-flexCol > :nth-child(2) > .vtex-rich-text-0-x-container > .vtex-rich-text-0-x-wrapper > .lh-copy',
@@ -14,10 +12,7 @@ export const ELEMENTS = {
     '.electrolux-minicart-3-x-opened > .electrolux-minicart-3-x-drawerContent > .electrolux-minicart-3-x-closeIconContainer > button',
   goToCart: '#proceed-to-checkout > .vtex-button__label',
   buttonItemRemoveProduct: (skuid) => `#remove-button-${skuid}`,
-  IconMinicartHome:
-    ':nth-child(5) > .vtex-flex-layout-0-x-flexRow > .mt0 > :nth-child(2) > .electrolux-minicart-3-x-minicartWrapperContainer > .electrolux-minicart-3-x-minicartContainer > .pa4 > .vtex-button',
   xpFnItemQuantityMobile: (skuid) => `#product-list-quantity-stepper-${skuid}`,
-  IconMinicartHomeMobile: '.pa4 > .vtex-button',
   titleMiniCart: '.electrolux-minicart-3-x-minicartTitle',
   btnDecreaseQuantity: '.electrolux-product-list-2-x-quantitySelectorDecrease',
 }
