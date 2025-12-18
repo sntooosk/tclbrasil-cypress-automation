@@ -1,0 +1,74 @@
+{
+  "name": "tcl-d2c-tclbrasil-cypress-automation",
+  "version": "2.43.0",
+  "description": "Cypress automation framework for TCL BR",
+  "scripts": {
+    "postinstall": "husky",
+    "commit": "cz",
+    "lint": "eslint \"**/*.{js,ts}\"",
+    "lint:fix": "eslint --fix \"**/*.{js,ts}\"",
+    "format": "prettier --write .",
+    "cy:run": "cypress run",
+    "cy:open:desktop": "dotenv -- cypress open -c viewportWidth=1921,viewportHeight=1081 --env environment=desktop",
+    "cy:open:mobile": "dotenv -- cypress open -c viewportWidth=375,viewportHeight=667 --env environment=mobile",
+    "bs:run:desktop": "dotenv -- browserstack-cypress run -c viewportWidth=1921,viewportHeight=1081 --env environment=desktop",
+    "bs:run:mobile": "dotenv -- browserstack-cypress run -c viewportWidth=375,viewportHeight=667 --env environment=mobile",
+    "bs:regressive:desktop": "npm run bs:run:desktop -- -b \"TCL BR - Regressive Test Desktop\"",
+    "bs:regressive:mobile": "npm run bs:run:mobile -- -b \"TCL BR - Regressive Test Mobile\"",
+    "bs:smoke:desktop": "npm run bs:run:desktop -- --spec cypress/e2e/features/SmokeTest.feature -b \"TCL BR - Smoke Test Desktop\"",
+    "bs:smoke:mobile": "npm run bs:run:mobile -- --spec cypress/e2e/features/SmokeTest.feature -b \"TCL BR - Smoke Test Mobile\"",
+    "bs:smoke:theme:desktop": "npm run bs:run:desktop -- --spec cypress/e2e/features/SmokeTest.feature -b \"[CI/CD][${CYPRESS_DEPLOY_ENV}] - TCL BR - Store Theme - Smoke Test Desktop\"",
+    "bs:smoke:theme:mobile": "npm run bs:run:mobile -- --spec cypress/e2e/features/SmokeTest.feature -b \"[CI/CD][${CYPRESS_DEPLOY_ENV}] - TCL BR - Store Theme - Smoke Test Mobile\"",
+    "bs:spec:desktop": "npm run bs:run:desktop -- --spec cypress/e2e/features/PdpTest.feature -b \"TCL BR - Spec Test Desktop\"",
+    "bs:spec:mobile": "npm run bs:run:mobile -- --spec cypress/e2e/features/PdpTest.feature -b \"TCL BR - Spec Test Mobile\"",
+    "bs:black:desktop": "npm run bs:run:desktop -- --spec cypress/e2e/features/LoginTest.feature,cypress/e2e/features/CheckoutTest.feature -b \"TCL BR - Black Friday Tests Desktop\"",
+    "bs:black:mobile": "npm run bs:run:desktop -- --spec cypress/e2e/features/LoginTest.feature,cypress/e2e/features/CheckoutTest.feature -b \"TCL BR - Black Friday Tests Mobile\""
+  },
+  "keywords": [
+    "cypress",
+    "cucumber",
+    "testing"
+  ],
+  "dependencies": {
+    "cypress-xpath": "2.0.1",
+    "dotenv-cli": "^7.4.2",
+    "faker-br": "^0.4.1",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@cypress/xpath": "^2.0.3",
+    "browserstack-cypress-cli": "^1.32.5",
+    "commitizen": "^4.3.0",
+    "cypress": "^13.17.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-cypress": "^3.5.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.9",
+    "prettier": "^3.3.3",
+    "prettier-plugin-gherkin": "^2.4.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "step_definitions": "cypress/support/steps",
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --fix",
+    "*.{json,feature,md}": "prettier --write"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}

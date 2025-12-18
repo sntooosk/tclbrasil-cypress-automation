@@ -1,0 +1,47 @@
+# Gitignore file for a Cypress project with Cucumber and BrowserStack CI
+# Ignoring commonly generated files and directories
+
+# Ignore node_modules directory as it contains dependencies
+node_modules/
+
+# Ignore log directory and local log files
+log/
+local.log
+
+# Ignore system files created by macOS
+.DS_Store
+
+# Ignore Cypress generated files and directories
+cypress/results/*
+cypress/reports/*
+cypress/screenshots/*
+cypress/videos/*
+
+# Ignore Allure report directories and results
+allure-report/*
+allure-results/*
+
+# Ignore results directory
+results/
+
+# Ignore downloads directory
+downloads/
+
+# Ignore Cucumber JSON report
+cucumber-json
+
+# Ignore build artifacts directory
+build_artifacts/
+
+# Ignore npm debug log file
+npm_install_debug.log
+
+# Ignore BrowserStack packages tarball and temporary directories
+bstackPackages.tar.gz
+tmpBstackPackages
+
+# Ignore test archives
+tests.zip
+
+# Ignore environment variables file
+.env

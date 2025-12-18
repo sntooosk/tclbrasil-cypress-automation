@@ -1,0 +1,17 @@
+# Ignore Node.js dependencies directory
+node_modules/
+
+# Ignore Cypress test results directories
+cypress/results/*
+cypress/reports/*
+cypress/screenshots/*
+cypress/videos/*
+
+# Ignore results directory
+results/
+
+# Ignore downloads directory
+downloads/
+
+# Ignore Cucumber JSON report
+cucumber-json

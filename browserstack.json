@@ -1,0 +1,50 @@
+{
+  "browsers": [
+    {
+      "os": "Windows 10",
+      "browser": "chrome",
+      "versions": ["latest"]
+    }
+  ],
+  "run_settings": {
+    "system_env_vars": [
+      "VTEX_WORKSPACE",
+      "VTEX_AUTH_COOKIE",
+      "CYPRESS_DEPLOY_ENV"
+    ],
+    "cypress_version": "13.latest",
+    "cypress_config_file": "./cypress.config.js",
+    "project_name": "TCL Functional Automation",
+    "build_name": "TCL BR - Build v2.0.0",
+    "exclude": [],
+    "parallels": "2",
+    "spec_timeout": 25,
+    "downloads": ["./cypress/cucumber-json/"],
+    "npm_dependencies": {
+      "cypress": "^13.17.0",
+      "cypress-cucumber-preprocessor": "^4.3.1",
+      "cypress-xpath": "2.0.1",
+      "faker-br": "^0.4.1",
+      "dotenv-cli": "^7.4.2"
+    },
+    "package_config_options": {
+      "cypress-cucumber-preprocessor": {
+        "step_definitions": "./cypress/support/steps",
+        "cucumberJson": {
+          "generate": true,
+          "outputFolder": "cypress/cucumber-json",
+          "filePrefix": "",
+          "fileSuffix": ".cucumber"
+        }
+      }
+    },
+    "callback_url": ""
+  },
+  "connection_settings": {
+    "local": false,
+    "local_identifier": null,
+    "local_mode": null,
+    "local_config_file": null
+  },
+  "disable_usage_reporting": false
+}

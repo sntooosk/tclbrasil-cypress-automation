@@ -1,0 +1,40 @@
+[
+  {
+    "zipCode": "02988070",
+    "street": "Rua Vieira de Brito",
+    "city": "São Paulo",
+    "country": "Brasil",
+    "section": "",
+    "state": "SP",
+    "ship_number": "A1234"
+  },
+  {
+    "zipCode": "04864-180",
+    "street": "Acesso Bem-te-vi Amarelo",
+    "city": "São Paulo",
+    "country": "Brasil",
+    "section": "",
+    "state": "SP"
+  },
+  {
+    "zipCode": "11",
+    "city": "Laguna De Los Padres",
+    "country": "Argentina",
+    "section": ""
+  },
+  {
+    "zipCode": "00000000",
+    "city": "Laguna De Los Padres",
+    "country": "Argentina",
+    "section": ""
+  },
+  {
+    "zipCode": "07241-000",
+    "street": "Rua Sílvio Manfredi",
+    "city": "Guarulhos",
+    "country": "Brasil",
+    "section": "",
+    "state": "SP",
+    "ship_number": "A1234"
+  }
+]

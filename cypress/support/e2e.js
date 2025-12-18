@@ -1,0 +1,24 @@
+import './commands'
+import addressData from '../fixtures/addressData.json'
+
+Cypress.on('uncaught:exception', () => false)
+require('cypress-xpath')
+
+beforeEach(() => {
+  cy.setCookie('cookieconsent_status', 'dismiss')
+  cy.setCookie('fb_cookieconsent_status', 'dismiss')
+  // set VTEX  session cookie workspace
+  const VTEX_AUTH_COOKIE = Cypress.env('VTEX_AUTH_COOKIE')
+
+  if (VTEX_AUTH_COOKIE) {
+    cy.setCookie('VtexIdclientAutCookie', VTEX_AUTH_COOKIE)
+  }
+})
+before(() => {
+  cy.getProductsAndSetEnv('Monitor', addressData[0].zipCode, 'produto')
+  cy.getProductsAndSetEnv(
+    'Lava e Seca TCL',
+    addressData[0].zipCode,
+    'produto-voltagem',
+  )
+})

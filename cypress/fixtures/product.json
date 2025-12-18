@@ -1,0 +1,123 @@
+[
+  {
+    "Product": "Potes Hérmeticos Electrolux de Vidro Quadrados 4 Unidades",
+    "SKU": "310121215",
+    "url": "/conjunto-de-potes-hermeticos-de-vidro-4-unidades-electrolux/p",
+    "salesChannel": "1",
+    "seller": "1",
+    "id_plp_compare": "2004821-310121215"
+  },
+  {
+    "Product": "Porta Ovos Electrolux",
+    "SKU": "2",
+    "url": "/porta-ovos-6-unidades-electrolux/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Filtro/Refil Original de Água para Purificador Electrolux PE11B/PE11X/PC41B/PC41X/PH41B/PH41X",
+    "SKU": "2001961",
+    "url": "/filtro-refil-de-agua-para-purificador-pe11b-pe11x-electrolux/p",
+    "salesChannel": "1",
+    "seller": "1",
+    "id_plp_compare": "2001961-2002872"
+  },
+  {
+    "Product": "AMFVC01",
+    "SKU": "310118961",
+    "url": "/filtro-saida-de-ar-de-motor-original-electrolux-para-aspirador-de-po-son01---amfvc01/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "ProducTestTestProduct",
+    "SKU": "9999999999999999999",
+    "url": "/ProducTestTestProduct/p"
+  },
+  {
+    "Product": "Forma de Gelo Twister para Refrigerador Electrolux",
+    "SKU": "1",
+    "url": "/forma-de-gelo-refrigerador-electrolux/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Purificador Electrolux Eletrônico Compacto Experience Pure 4x Digital Cinza (PE12G) Bivolt",
+    "SKU": "2005159",
+    "url": "/pe12g-pe12g-purif-agua-pelt-bivolt/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Potes Herméticos Electrolux de Plástico Vermelho/ Branco Retangular com 8 Unidades",
+    "SKU": "310119310",
+    "url": "/potes-hermeticos-electrolux-de-plastico-vermelho--branco-retangular-com-8-unidades/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Copo Térmico Electrolux 560ml Preto Sense com Tampa Hermetica",
+    "SKU": "310119804",
+    "url": "/copo-termico-sense-560-ml-preto-electrolux/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Micro-ondas Electrolux 20L Branco Painel Seguro e Display Digital (MTD30)",
+    "SKU": "1",
+    "url": "/forno-micro-ondas-painel-seguro-mtd30-electrolux/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Geladeira Electrolux Frost Free Inverter 410L Água na Porta com AutoSense Duplex Inox Look (IW46S)",
+    "SKU": "310127198",
+    "url": "/geladeira-electrolux-frost-free-inverter-410l-agua-na-porta-com-autosense-duplex-inox-look--iw46s-/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Conjunto Bowls de Inox Electrolux com Tampa Plástica 3 Peças",
+    "SKU": "310119874",
+    "url": "/conjunto-bowls-de-inox-electrolux-com-tampa-plastica-3-pecas/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Escorredor de Louças Electrolux Top Dry com Tapete de Microfibra Dobrável",
+    "SKU": "310122391",
+    "url": "/escorredor-de-loucas-electrolux-top-dry-com-tapete-de-microfibra-dobravel--41047704-/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Geladeira Electrolux Frost Free Inverter 480L Efficient AutoSense 3 Portas Branca (IM7)",
+    "SKU": "2004214",
+    "url": "/geladeira-electrolux-frost-free-inverter-480l-efficient-autosense-3-portas-branca--im7-/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Micro-ondas Electrolux 20L cor Inox Espelhado com Função Tira Odor (MT30S)",
+    "SKU": ["2001807", "2001808"],
+    "url": "/micro-ondas-tira-odor-electrolux-mt30s/p",
+    "salesChannel": "1",
+    "seller": "1",
+    "SKU_garantia": ["2002596", "2002595"]
+  },
+  {
+    "Product": "Purificador Electrolux Eletrônico Compacto Experience Pure 4x Digital",
+    "SKU": "2005160",
+    "url": "/pe12v-pe12v-purif-agua-pelt-bivolt/p",
+    "salesChannel": "1",
+    "seller": "1"
+  },
+  {
+    "Product": "Micro-ondas Electrolux 31L cor Inox Espelhado com Painel Integrado e Função Tira Odor (MI41S)",
+    "SKU": ["2001806", "2001805"],
+    "url": "/micro-ondas-painel-integrado-electrolux-mi41s/p",
+    "salesChannel": "1",
+    "seller": "1",
+    "SKU_garantia": ["2002581", "2002572"]
+  }
+]

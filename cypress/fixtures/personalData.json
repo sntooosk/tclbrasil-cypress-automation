@@ -1,0 +1,16 @@
+[
+  {
+    "documentID": "099.881.169-69",
+    "gender": "Masculino",
+    "birthDate": "01/01/1980",
+    "areaCodePhone": "11",
+    "phone": "(11) 9999-4444"
+  },
+  {
+    "documentID": "547.521.060-86",
+    "gender": "Feminino",
+    "birthDate": "01/01/1985",
+    "areaCodePhone": "13",
+    "phone": "(11) 9999-5555"
+  }
+]
