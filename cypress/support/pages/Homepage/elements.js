@@ -2,7 +2,7 @@ export const ELEMENTS = {
   menuCategories: '.HeaderNavBarLinks_EmphasisPrincipalLink__JlURY',
   menuCategoriesMobile: '[href="#menu-drawer-mobile"]',
 
-  itemCategoryMenu: '.vtex-menu-2-x-styledLinkContent',
+  itemCategoryMenu: () => `.vtex-menu-2-x-styledLinkContent`,
 
   inputFirstName:
     '[data-testid="fs-newsletter-content"] > :nth-child(1) > [data-testid="fs-input"]',
