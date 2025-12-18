@@ -97,7 +97,9 @@ class CheckoutPage {
   }
 
   selectPixOption() {
-    cy.get(elCheckoutPage.pixOption).should('be.visible').click({ force: true })
+    cy.get(elCheckoutPage.selectPixOption)
+      .should('be.visible')
+      .click({ force: true })
   }
 
   clickBtnGoToBuy() {
@@ -109,19 +111,19 @@ class CheckoutPage {
   }
 
   validateFirstNameAlert() {
-    cy.get(elCheckoutPage.alertFirstName).should('be.visible')
+    cy.get(elCheckoutPage.labelFirstNameAlert).should('be.visible')
   }
 
   validateLastNameAlert() {
-    cy.get(elCheckoutPage.alertLastName).should('be.visible')
+    cy.get(elCheckoutPage.labelLastNameAlert).should('be.visible')
   }
 
   validateDocumentAlert() {
-    cy.get(elCheckoutPage.alertDocument).should('be.visible')
+    cy.get(elCheckoutPage.labelDocumentAlert).should('be.visible')
   }
 
   validatePhoneAlert() {
-    cy.get(elCheckoutPage.alertPhone).should('be.visible')
+    cy.get(elCheckoutPage.labelPhoneAlert).should('be.visible')
   }
 }
 
