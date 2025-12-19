@@ -171,8 +171,7 @@ class CartPage {
   typeZipCode(zipCode) {
     cy.get(elCartPage.shippingButton).click()
     cy.get(elCartPage.inputZipCode, { timeout: 8000 }).then(($input) => {
-      cy.wrap($input).should('be.visible').focus()
-      cy.wrap($input).type(zipCode)
+      cy.wrap($input).should('be.visible').type(zipCode)
     })
   }
 

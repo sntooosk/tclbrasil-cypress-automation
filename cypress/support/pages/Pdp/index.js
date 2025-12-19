@@ -30,7 +30,6 @@ class PdpPage {
   typeZipCode(zipCode) {
     cy.wait(1000)
     cy.get(elPdpPage.shipping.input).then(($input) => {
-      cy.wrap($input).focus()
       cy.wrap($input).clear()
       cy.wrap($input).type(zipCode, { force: true })
     })
