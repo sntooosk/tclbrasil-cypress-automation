@@ -85,10 +85,10 @@ Cypress.Commands.add('clearCart', () => {
   cy.request('GET', '/api/checkout/pub/orderForm').then((res) => {
     const orderFormId = res.body.orderFormId
 
-    cy.request(
-      'POST',
-      `/api/checkout/pub/orderForm/${orderFormId}/items/removeAll`,
-      { failOnStatusCode: false },
-    )
+    cy.request({
+      method: 'POST',
+      url: `/api/checkout/pub/orderForm/${orderFormId}/items/removeAll`,
+      failOnStatusCode: false,
+    })
   })
 })

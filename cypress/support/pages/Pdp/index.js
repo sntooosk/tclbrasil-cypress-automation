@@ -10,15 +10,11 @@ class PdpPage {
 
   clickBtnAddToCart() {
     cy.wait(5000)
-    cy.clearCart()
-    cy.get(elPdpPage.buyButton).first().should('exist').click({ force: true })
-    cy.clearCart()
     cy.get(elPdpPage.buyButton).first().should('exist').click({ force: true })
     cy.wait(5000)
   }
 
   clickConfirmModalVariation() {
-    cy.clearCart()
     cy.get(elPdpPage.buttonOpenModalVariation)
       .first()
       .should('exist')
@@ -92,7 +88,9 @@ class PdpPage {
       cy.scrollTo(0, 350)
     }
     cy.wait(5000)
-    cy.get(elPdpPage.minishelfProduct).should('be.visible').click({ force: true })
+    cy.get(elPdpPage.minishelfProduct)
+      .should('be.visible')
+      .click({ force: true })
     cy.wait(5000)
   }
 

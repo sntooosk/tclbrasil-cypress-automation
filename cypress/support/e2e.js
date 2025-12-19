@@ -13,6 +13,9 @@ beforeEach(() => {
   if (VTEX_AUTH_COOKIE) {
     cy.setCookie('VtexIdclientAutCookie', VTEX_AUTH_COOKIE)
   }
+
+  // Garantir que cada cenário comece com o carrinho vazio sem interferir no contexto do usuário
+  cy.clearCart()
 })
 before(() => {
   cy.getProductsAndSetEnv('Monitor', addressData[0].zipCode, 'produto')
