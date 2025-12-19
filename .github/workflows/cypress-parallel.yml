@@ -1,9 +1,12 @@
-# .github/workflows/cypress.yml
 name: Cypress
 
 on:
   push:
-    branches: [main]
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
 
 jobs:
   mobile:
