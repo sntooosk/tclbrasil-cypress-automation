@@ -10,7 +10,6 @@ export const ELEMENTS = {
   inputZipCode: 'input[name=postalCode]',
   inputNumber: 'input[name=number]',
   inputComplement: 'input[name=complement]',
-  messageInfo: '.vtex-alert > .flex-ns > .items-start',
   tableMyAddress: '.vtex-my-account-1-x-addressBox',
   labelMyAddressSavedStreet:
     '.vtex-my-account-1-x-boxContainerBody span.street',
