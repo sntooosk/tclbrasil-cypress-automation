@@ -10,19 +10,13 @@ export const ELEMENTS = {
   inputZipCode: 'input[name=postalCode]',
   inputNumber: 'input[name=number]',
   inputComplement: 'input[name=complement]',
-  messageInfo: '.vtex-alert > .flex-ns > .items-start',
-  tableMyAddress: '.vtex-my-account-1-x-addressBox',
-  labelMyAddressSavedStreet:
-    '.vtex-my-account-1-x-boxContainerBody span.street',
-  labelMyAddressSavedNumber:
-    '.vtex-my-account-1-x-boxContainerBody span.number',
-  labelMyAddressSavedZipCode:
-    '.vtex-my-account-1-x-boxContainerBody span.postalCode',
-  labelMyAddressSavedComplement:
-    '.vtex-my-account-1-x-boxContainerBody span.complement',
-  labelMyAddressSavedCity: '.vtex-my-account-1-x-boxContainerBody span.city',
-  labelMyAddressSavedCountry:
-    '.vtex-my-account-1-x-boxContainerBody span.country',
+  tableMyAddress: '[class*="addressBox"]',
+  labelMyAddressSavedStreet: '[class*="boxContainerBody"] span.street',
+  labelMyAddressSavedNumber: '[class*="boxContainerBody"] span.number',
+  labelMyAddressSavedZipCode: '[class*="boxContainerBody"] span.postalCode',
+  labelMyAddressSavedComplement: '[class*="boxContainerBody"] span.complement',
+  labelMyAddressSavedCity: '[class*="boxContainerBody"] span.city',
+  labelMyAddressSavedCountry: '[class*="boxContainerBody"] span.country',
 
   //Personal Data
   buttonEditPersonalData: '.vtex-button__label', //contains("Editar")
@@ -34,19 +28,13 @@ export const ELEMENTS = {
   inputBirthDate: 'input[name=birthDate]',
   buttonSavePersonalData: '//div[normalize-space()="Salvar alterações"]',
   //Personal Data Saved
-  labelNameSaved:
-    'div[class="mb8 flex-auto vtex-my-account-1-x-firstNameSubContainer"] div[class="light c-on-disabled vtex-my-account-1-x-dataEntryChildren"]',
-  labelLastNameSaved:
-    'div[class="mb8 w-50-ns vtex-my-account-1-x-lastNameSubContainer"] div[class="light c-on-disabled vtex-my-account-1-x-dataEntryChildren"]',
-  labelDocumentSaved:
-    'div[class="mb8 flex-auto vtex-my-account-1-x-documentsSubContainer"] div[class="light c-on-disabled vtex-my-account-1-x-dataEntryChildren"]',
-  labelGenderSaved:
-    'div[class="mb8 w-50-ns vtex-my-account-1-x-genderSubContainer"] div[class="light c-on-disabled vtex-my-account-1-x-dataEntryChildren"]',
-  labelBirthDate:
-    '.vtex-my-account-1-x-phoneNumberContainer > .flex-auto > .light',
-  labelHomePhone:
-    '.vtex-my-account-1-x-phoneNumberContainer > .w-50-ns > .light',
+  labelNameSaved: '[class*="firstNameSubContainer"] [class*="dataEntry"]',
+  labelLastNameSaved: '[class*="lastNameSubContainer"] [class*="dataEntry"]',
+  labelDocumentSaved: '[class*="documentsSubContainer"] [class*="dataEntry"]',
+  labelGenderSaved: '[class*="genderSubContainer"] [class*="dataEntry"]',
+  labelBirthDate: '[class*="phoneNumberContainer"] > .flex-auto > .light',
+  labelHomePhone: '[class*="phoneNumberContainer"] > .w-50-ns > .light',
   buttonPopupExit: '.bg-action-primary > .vtex-button__label',
-  clickBtnExit: '.vtex-my-account-1-x-menuLink',
+  clickBtnExit: '[class*="menuLink"]',
   enderecoEmpty: '.vtex-account__page-body',
 }

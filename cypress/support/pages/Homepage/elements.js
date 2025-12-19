@@ -3,7 +3,7 @@ export const ELEMENTS = {
   menuCategoriesMobile:
     '[data-testid="fs-navbar-buttons"] > :nth-child(5) > button',
 
-  itemCategoryMenu: () => `.vtex-menu-2-x-styledLinkContent`,
+  itemCategoryMenu: () => `[class*="styledLinkContent"]`,
 
   inputFirstName:
     '[data-testid="fs-newsletter-content"] > :nth-child(1) > [data-testid="fs-input"]',

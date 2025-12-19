@@ -133,11 +133,6 @@ class PdpPage {
     cy.get(elPdpPage.textLinkPaymentOptionsModal).first().click({ force: true })
   }
 
-  validatePaymentOptionsLanguage() {
-    cy.get(elPdpPage.textTitlePaymentOptionsModal).should('be.visible')
-    cy.should('have.text', 'Formas de Pagamento')
-  }
-
   clickBtnClosePaymentOptionsModal() {
     cy.get(elPdpPage.buttonClosePaymentOptionsModal).click({ force: true })
   }

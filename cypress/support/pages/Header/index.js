@@ -8,10 +8,9 @@ class Header {
       cy.wait(15000)
       cy.get(elHeader.buttonLoginMobile).first().click({ force: true })
     } else if (Cypress.env('environment') == 'desktop') {
-      cy.get(elHeader.buttonLogin)
-        .first()
-        .should('be.visible')
-        .click({ force: true })
+      cy.get(elHeader.buttonLogin).first().should('be.visible').click({
+        force: true,
+      })
     }
   }
 
@@ -24,7 +23,7 @@ class Header {
   validateUserLogged(status, cookieAuth) {
     switch (status) {
       case 'logged':
-        if (Cypress.env('environment' == 'desktop')) {
+        if (Cypress.env('environment') === 'desktop') {
           cy.get(elHeader.buttonLoggedUser).should('be.visible')
         }
         cy.getCookie(cookieAuth).should('exist')
@@ -43,6 +42,15 @@ class Header {
       .should('be.visible')
       .type(`${product}{enter}`, { force: true })
     cy.wait(15000)
+  }
+
+  validateLogoRedirectsHome() {
+    cy.get(elHeader.logoLink)
+      .filter(':visible')
+      .first()
+      .should('have.attr', 'href')
+      .click({ force: true })
+    cy.location('pathname').should('eq', '/')
   }
 }
 

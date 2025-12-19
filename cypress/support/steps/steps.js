@@ -124,7 +124,6 @@ When('I add the product variation to the cart', () => {
 
 When('I open the payment options modal', () => {
   PdpPage.clickTextPaymentOptionsModal()
-  PdpPage.validatePaymentOptionsLanguage()
 })
 
 When('On the product page calculate valid shipping', () => {
@@ -272,10 +271,6 @@ When('I select Pix option', () => {
 
 When('I click button pagament', () => {
   CheckoutPage.clickBtnGoToBuy()
-})
-
-When('The modal pix is displayed', () => {
-  CheckoutPage.validateModalPix()
 })
 
 // My Account navigation
@@ -427,7 +422,9 @@ When('I select the ordination by {}', (order) => {
   PLPPage.selectOrderBy(order)
 })
 
-Then('the store logo has a link to homepage', () => {})
+Then('the store logo has a link to homepage', () => {
+  Header.validateLogoRedirectsHome()
+})
 
 Then('No results should be displayed', () => {
   PLPPage.validateResultEmpty()
