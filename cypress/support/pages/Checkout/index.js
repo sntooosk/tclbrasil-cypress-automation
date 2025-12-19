@@ -4,19 +4,17 @@ const elCheckoutPage = require('./elements').ELEMENTS
 
 class CheckoutPage {
   clearAndType(element, text) {
-    cy.get(element).then(($element) => {
-      cy.wrap($element).should('be.enabled').clear({ force: true })
-      cy.wrap($element).focus()
-      cy.wrap($element).type(text)
-    })
+    cy.get(element)
+      .should('be.enabled')
+      .clear({ force: true })
+      .type(text)
   }
 
   typeClientPreEmailProfile(clientPreEmail) {
     cy.wait(10000)
-    cy.get(elCheckoutPage.inputClientPreEmail).then(($input) => {
-      cy.wrap($input).should('be.visible').focus()
-      cy.wrap($input).type(clientPreEmail)
-    })
+    cy.get(elCheckoutPage.inputClientPreEmail)
+      .should('be.visible')
+      .type(clientPreEmail)
   }
 
   typeFirstNameProfile(firstName) {
@@ -68,11 +66,9 @@ class CheckoutPage {
     cy.wait(5000)
     cy.get(elCheckoutPage.inputZipCode)
       .last()
-      .then(($input) => {
-        cy.wrap($input).should('be.enabled').clear({ force: true })
-        cy.wrap($input).focus()
-        cy.wrap($input).type(zipCode, { force: true })
-      })
+      .should('be.enabled')
+      .clear({ force: true })
+      .type(zipCode, { force: true })
     cy.wait(3000)
   }
 

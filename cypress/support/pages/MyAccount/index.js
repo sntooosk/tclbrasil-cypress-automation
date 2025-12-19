@@ -59,7 +59,6 @@ class MyAccount {
   typeZipCode(zipCode) {
     cy.wait(2000)
     cy.get(elMyAccount.inputZipCode).then(($input) => {
-      cy.wrap($input).focus()
       cy.wrap($input).clear()
       cy.wrap($input).type(zipCode)
     })
@@ -68,7 +67,7 @@ class MyAccount {
   typeNumber(number) {
     cy.wait(2000)
     cy.get(elMyAccount.inputNumber).then(($input) => {
-      cy.wrap($input).should('be.enabled').focus()
+      cy.wrap($input).should('be.enabled')
       cy.wrap($input).clear()
       cy.wrap($input).type(number, { force: true })
     })
@@ -77,7 +76,7 @@ class MyAccount {
   typeComplement(complement) {
     cy.wait(2000)
     cy.get(elMyAccount.inputComplement).then(($input) => {
-      cy.wrap($input).should('be.enabled').focus()
+      cy.wrap($input).should('be.enabled')
       cy.wrap($input).clear()
       cy.wrap($input).type(complement, { force: true })
     })
@@ -85,7 +84,7 @@ class MyAccount {
 
   typeName(name) {
     cy.get(elMyAccount.inputName).then(($input) => {
-      cy.wrap($input).should('be.enabled').focus()
+      cy.wrap($input).should('be.enabled')
       cy.wrap($input).clear()
       cy.wrap($input).type(name, { force: true })
     })
@@ -93,7 +92,7 @@ class MyAccount {
 
   typeLastName(lastName) {
     cy.get(elMyAccount.inputLastName).then(($input) => {
-      cy.wrap($input).should('be.enabled').focus()
+      cy.wrap($input).should('be.enabled')
       cy.wrap($input).clear()
       cy.wrap($input).type(lastName, { force: true })
     })
@@ -101,7 +100,7 @@ class MyAccount {
 
   typeDocument(document) {
     cy.get(elMyAccount.inputDocument).then(($input) => {
-      cy.wrap($input).should('be.enabled').focus()
+      cy.wrap($input).should('be.enabled')
       cy.wrap($input).clear()
       cy.wrap($input).type(document, { force: true })
     })
@@ -109,7 +108,7 @@ class MyAccount {
 
   typeHomePhone(phone) {
     cy.get(elMyAccount.inputHomePhone).then(($input) => {
-      cy.wrap($input).should('be.enabled').focus()
+      cy.wrap($input).should('be.enabled')
       cy.wrap($input).clear()
       cy.wrap($input).type(phone, { force: true })
     })
@@ -117,7 +116,7 @@ class MyAccount {
 
   typeBirthDate(birthDate) {
     cy.get(elMyAccount.inputBirthDate).then(($input) => {
-      cy.wrap($input).should('be.enabled').focus()
+      cy.wrap($input).should('be.enabled')
       cy.wrap($input).clear()
       cy.wrap($input).type(birthDate, { force: true })
     })
