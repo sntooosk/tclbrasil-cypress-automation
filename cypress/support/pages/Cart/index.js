@@ -17,7 +17,6 @@ class CartPage {
   }
 
   accessCartPageWithProduct = (q = 1) => {
-    cy.clearCart()
     const produto = Cypress.env('produto')[0]
 
     cy.visit(`/checkout/cart/add?sc=1&sku=${produto.sku}&qty=${q}&seller=1`, {
@@ -26,7 +25,6 @@ class CartPage {
   }
 
   accessCartPageWithProducts1and2 = (q = 1) => {
-    cy.clearCart()
     const [p1, p2] = Cypress.env('produto')
 
     cy.visit(
