@@ -48,4 +48,5 @@ export const ELEMENTS = {
     '.vtex-my-account-1-x-phoneNumberContainer > .w-50-ns > .light',
   buttonPopupExit: '.bg-action-primary > .vtex-button__label',
   clickBtnExit: '.vtex-my-account-1-x-menuLink',
+  enderecoEmpty: '.vtex-account__page-body',
 }

@@ -15,9 +15,8 @@ export const ELEMENTS = {
 
   labelFirstNameAlert: '.client-first-name > .help',
   labelLastNameAlert: '.client-last-name > .help',
-  labelPhoneAlert:
-    '//*[@id="client-profile-data"]/div/div[2]/div/div/form/div/div/fieldset[1]/div[1]/p[1]/span',
-  labelDocumentAlert: '//span[normalize-space()="Campo obrigatório."]',
+  labelPhoneAlert: '.client-phone > .help',
+  labelDocumentAlert: '.client-document > .help',
   selectPixOption:
     '#payment-group-instantPaymentPaymentGroup > .payment-group-item-text',
   modalPix: '.VTEX-PIX__modal-container',

@@ -13,6 +13,7 @@ class PLPPage {
     cy.get(elPlpPage.productCardBySku(sku))
       .should('be.visible')
       .find('a[data-fs-custom-product-card-link="true"]')
+      .first()
       .click({ force: true })
   }
 

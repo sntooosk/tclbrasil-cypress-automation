@@ -141,10 +141,10 @@ class MyAccount {
     cy.wait(5000)
   }
 
-  validateMessageRemoveAddress() {
-    cy.get(elMyAccount.messageInfo).should(
+  validateBodyEmptyEndereco() {
+    cy.get(elMyAccount.enderecoEmpty).should(
       'have.text',
-      'Suas informações foram salvas com sucesso.',
+      'Você não tem nenhum endereço cadastrado!',
     )
   }
 

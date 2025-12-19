@@ -1,0 +1,31 @@
+# .github/workflows/cypress-parallel.yml
+name: Cypress Mobile + Desktop
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        run:
+          - cy:run:mobile
+          - cy:run:desktop
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - run: npm ci
+
+      - name: Run Cypress
+        run: npm run ${{ matrix.run }}
+        env:
+          CYPRESS_DEPLOY_ENV: ci

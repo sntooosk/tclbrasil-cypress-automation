@@ -42,6 +42,9 @@ class CartPage {
   clickBtnCartToOrder() {
     cy.get(elCartPage.buttonCartToOrder).should('exist').click({ force: true })
   }
+  clickBtnBackButton() {
+    cy.get(elCartPage.homeBackButton).should('exist').click({ force: true })
+  }
 
   clickBtnCartToOrderForm() {
     cy.get(elCartPage.buttonCartToOrderForm)
