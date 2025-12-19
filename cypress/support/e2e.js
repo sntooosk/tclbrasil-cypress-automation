@@ -18,8 +18,8 @@ beforeEach(() => {
   cy.clearCart()
 })
 before(() => {
-  cy.getProductsAndSetEnv('Monitor', addressData[0].zipCode, 'produto')
-  cy.getProductsAndSetEnv(
+  cy.getAvailableProducts('Monitor', addressData[0].zipCode, 'produto')
+  cy.getAvailableProducts(
     'Lava e Seca TCL',
     addressData[0].zipCode,
     'produto-voltagem',

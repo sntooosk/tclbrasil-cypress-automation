@@ -81,13 +81,6 @@ class PdpPage {
   }
 
   addProductFromMinishelf() {
-    cy.wait(8000)
-    if (Cypress.env('environment') == 'mobile') {
-      cy.scrollTo(0, 1200)
-    } else {
-      cy.scrollTo(0, 350)
-    }
-    cy.wait(5000)
     cy.get(elPdpPage.minishelfProduct)
       .should('be.visible')
       .click({ force: true })

@@ -34,7 +34,7 @@ Feature: My Account tests
   Scenario: Remove an address
     And I Access the address page
     And I remove an address
-    Then I check the removal success message
+    Then I check the body empty
 
   Scenario: Loggout in MyAccount
     And I Access the profile page

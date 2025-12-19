@@ -29,4 +29,5 @@ export const ELEMENTS = {
   UnavailableShippingData: '.srp-unavailable',
   addedValidCoupon:
     '.full-cart > .summary-template-holder > .row-fluid > .span5 > .coupon-column > .coupon > .coupon-form > .coupon-fieldset > div > .coupon-fields > .info',
+  homeBackButton: '.backButton',
 }

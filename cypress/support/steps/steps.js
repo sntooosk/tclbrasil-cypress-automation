@@ -15,7 +15,11 @@ const faker = require('faker-br')
 const firstNameFaker = faker.name.firstName()
 const lastNameFaker = faker.name.lastName()
 const correctEmailFaker = faker.internet.email(firstNameFaker, lastNameFaker)
-const invalidEmailFaker = faker.internet.email(firstNameFaker, lastNameFaker, '@invalidprovider')
+const invalidEmailFaker = faker.internet.email(
+  firstNameFaker,
+  lastNameFaker,
+  '@invalidprovider',
+)
 const customNumberFaker = faker.internet.password(4)
 const complementFaker = faker.address.direction()
 const invalidCoupon = faker.helpers.replaceSymbolWithNumber('TEST###')
@@ -147,6 +151,10 @@ When('I proceed to checkout', () => {
   CartPage.clickBtnCartToOrderForm()
 })
 
+When('Click the store logo to homepage', () => {
+  CartPage.clickBtnBackButton()
+})
+
 When('Avanced to checkout', () => {
   CartPage.clickBtnCartToOrder()
 })
@@ -174,7 +182,10 @@ When('I remove the item from cart', () => {
 })
 
 When('I remove all items from cart', () => {
-  CartPage.clickClearCart(Cypress.env('produto')[0].sku, Cypress.env('produto')[1].sku)
+  CartPage.clickClearCart(
+    Cypress.env('produto')[0].sku,
+    Cypress.env('produto')[1].sku,
+  )
 })
 
 When('I calculate valid shipping', () => {
@@ -358,7 +369,10 @@ Then('the product should be displayed in the cart', () => {
 })
 
 Then('the product variation should be displayed in the cart', () => {
-  CartPage.validateProductInCartBySku(Cypress.env('produto-voltagem')[0].sku, 'visible')
+  CartPage.validateProductInCartBySku(
+    Cypress.env('produto-voltagem')[0].sku,
+    'visible',
+  )
 })
 
 Then('I validate if the product is not in the cart', () => {
@@ -495,8 +509,8 @@ Then('The unavailable shipping table should be displayed at Cart', () => {
   CartPage.validateUnavailableShipping()
 })
 
-Then('I check the removal success message', () => {
-  MyAccount.validateMessageRemoveAddress()
+Then('I check the body empty', () => {
+  MyAccount.validateBodyEmptyEndereco()
 })
 
 And('I see the lead capture modal', () => {
