@@ -37,12 +37,12 @@ class HomePage {
     if (Cypress.env('environment') == 'mobile') {
       cy.wait(9000)
       cy.scrollTo(0, 1200)
-      cy.get(elHomepage.itemShelf).click({ force: true })
+      cy.get(elHomepage.itemShelf).first().click({ force: true })
       cy.wait(8000)
     } else if (Cypress.env('environment') == 'desktop') {
       cy.wait(9000)
       cy.scrollTo(0, 1000)
-      cy.get(elHomepage.itemShelf).click({ force: true })
+      cy.get(elHomepage.itemShelf).first().click({ force: true })
       cy.wait(8000)
     }
   }

@@ -1,4 +1,4 @@
 export const ELEMENTS = {
-  minicartTextEmpty: '[data-testid="fs-empty-state"]',
-  minicartTextWithProduct: '[data-testid="fs-cart-sidebar"]',
+  minicartTextEmpty: '[class*="section-cart-sidebar"] [class*="empty"]',
+  minicartTextWithProduct: '[class*="section-cart-sidebar"]',
 }

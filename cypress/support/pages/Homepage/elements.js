@@ -1,15 +1,14 @@
 export const ELEMENTS = {
-  menuCategories: '.HeaderNavBarLinks_EmphasisPrincipalLink__JlURY',
+  menuCategories: '[class*="HeaderNavBarLinks_EmphasisPrincipalLink"]',
   menuCategoriesMobile:
-    '[data-testid="fs-navbar-buttons"] > :nth-child(5) > button',
+    '[class*="HeaderNavBarLinks_PrincipalContainerMenu"] button',
 
-  itemCategoryMenu: () => `.vtex-menu-2-x-styledLinkContent`,
+  itemCategoryMenu: () => `[class*="vtex-menu-2-x-styledLinkContent"]`,
 
-  inputFirstName:
-    '[data-testid="fs-newsletter-content"] > :nth-child(1) > [data-testid="fs-input"]',
-  inputClientEmail: ':nth-child(2) > [data-testid="fs-input"]',
-  formSubmitButton: '[data-testid="fs-button"]',
-  sucessMessage: '[data-fs-toast-message="true"]',
-  formFooterNewslleter: '[data-testid="fs-newsletter"]',
-  itemShelf: '#mais-vendidos-carousel-item-0 > [data-testid="fs-product-card"]',
+  inputFirstName: '[class*="section-newsletter"] input:first-of-type',
+  inputClientEmail: '[class*="section-newsletter"] input:nth-of-type(2)',
+  formSubmitButton: '[class*="section-newsletter"] button',
+  sucessMessage: '[class*="fs-toast"], [class*="toast-message"]',
+  formFooterNewslleter: '[class*="section-newsletter"]',
+  itemShelf: '[class*="custom-product-card__container"]',
 }

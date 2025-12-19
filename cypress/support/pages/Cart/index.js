@@ -8,6 +8,22 @@ class CartPage {
     cy.wait(5000)
   }
 
+  getProductNameBySku(sku) {
+    const catalog = [
+      ...(Cypress.env('produto') || []),
+      ...(Cypress.env('produto-voltagem') || []),
+    ]
+
+    return catalog.find((item) => item.sku === sku)?.name || sku
+  }
+
+  getCartRow(productName) {
+    return cy
+      .get(elCartPage.cartRow)
+      .filter((_, row) => row.querySelector(`img[alt*="${productName}"]`))
+      .first()
+  }
+
   clearAndType(element, text) {
     cy.get(element).then(($element) => {
       cy.wrap($element).should('be.enabled').clear({ force: true })
@@ -58,12 +74,14 @@ class CartPage {
   }
 
   validateProductInCartBySku(sku, status) {
+    const productName = this.getProductNameBySku(sku)
+
     switch (status) {
       case 'visible':
-        cy.get(elCartPage.cartItemBySku(sku)).should('exist').and('be.visible')
+        this.getCartRow(productName).should('exist').and('be.visible')
         break
       case 'not visible':
-        cy.get(elCartPage.cartItemBySku(sku)).should('not.exist')
+        this.getCartRow(productName).should('not.exist')
         break
       default:
         throw new Error('Invalid status')
@@ -78,8 +96,10 @@ class CartPage {
     cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should(
       'not.be.visible',
     )
-    cy.get(elCartPage.buttonItemRemoveProduct(skuid)).should('exist')
-    cy.get(elCartPage.buttonItemRemoveProduct(skuid))
+    const productName = this.getProductNameBySku(skuid)
+
+    this.getCartRow(productName)
+      .find(elCartPage.buttonItemRemoveProduct)
       .should('be.visible')
       .click({ force: true })
   }
@@ -88,16 +108,16 @@ class CartPage {
     cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should(
       'not.be.visible',
     )
-    cy.get(elCartPage.buttonItemRemoveProduct(skuid1)).should('exist')
-    cy.get(elCartPage.buttonItemRemoveProduct(skuid1))
+    this.getCartRow(this.getProductNameBySku(skuid1))
+      .find(elCartPage.buttonItemRemoveProduct)
       .should('be.visible')
       .click({ force: true })
 
     cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should(
       'not.be.visible',
     )
-    cy.get(elCartPage.buttonItemRemoveProduct(skuid2)).should('exist')
-    cy.get(elCartPage.buttonItemRemoveProduct(skuid2))
+    this.getCartRow(this.getProductNameBySku(skuid2))
+      .find(elCartPage.buttonItemRemoveProduct)
       .should('be.visible')
       .click({ force: true })
     cy.get(elCartPage.imageSourceLoading).should('not.be.visible')
@@ -105,13 +125,15 @@ class CartPage {
 
   clickXpFnIncrementQuantity(product, quantity) {
     cy.wait(2500)
-    cy.xpath(elCartPage.labelItemQuantity(product))
+    this.getCartRow(product)
+      .find(elCartPage.labelItemQuantity)
       .invoke('val')
       .then(($value) => {
         const index = quantity - $value
         for (let n = 0; n < index; n++) {
           cy.wait(5000)
-          cy.xpath(elCartPage.buttonIncrementQuantity(product))
+          this.getCartRow(product)
+            .find(elCartPage.buttonIncrementQuantity)
             .should('exist')
             .click({ force: true })
         }
@@ -120,13 +142,15 @@ class CartPage {
 
   clickXpFnDecrementQuantity(product, quantity) {
     cy.wait(2500)
-    cy.xpath(elCartPage.labelItemQuantity(product))
+    this.getCartRow(product)
+      .find(elCartPage.labelItemQuantity)
       .invoke('val')
       .then(($value) => {
         const index = quantity - $value
         for (let n = 0; n > index; n--) {
           cy.wait(5000)
-          cy.xpath(elCartPage.buttonDecrementQuantity(product))
+          this.getCartRow(product)
+            .find(elCartPage.buttonDecrementQuantity)
             .should('exist')
             .click({ force: true })
         }
@@ -135,7 +159,8 @@ class CartPage {
 
   validateXpFnItemQuantity(product, quantity) {
     cy.wait(5000)
-    cy.xpath(elCartPage.labelItemQuantity(product))
+    this.getCartRow(product)
+      .find(elCartPage.labelItemQuantity)
       .invoke('val')
       .should('eq', quantity)
   }
@@ -185,7 +210,7 @@ class CartPage {
   }
 
   validateUnavailableShipping() {
-    cy.get(elCartPage.UnavailableShippingData).should(
+    cy.get(elCartPage.unavailableShippingData).should(
       'have.text',
       'Indisponível para este endereço.',
     )

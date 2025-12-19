@@ -2,7 +2,6 @@ import './commands'
 import addressData from '../fixtures/addressData.json'
 
 Cypress.on('uncaught:exception', () => false)
-require('cypress-xpath')
 
 beforeEach(() => {
   cy.setCookie('cookieconsent_status', 'dismiss')

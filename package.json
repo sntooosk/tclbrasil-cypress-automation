@@ -32,15 +32,12 @@
     "testing"
   ],
   "dependencies": {
-    "cypress-xpath": "2.0.1",
     "dotenv-cli": "^7.4.2",
-    "faker-br": "^0.4.1",
-    "yargs": "^17.7.2"
+    "faker-br": "^0.4.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@cypress/xpath": "^2.0.3",
     "browserstack-cypress-cli": "^1.32.5",
     "commitizen": "^4.3.0",
     "cypress": "^13.17.0",

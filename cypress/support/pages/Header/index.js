@@ -24,7 +24,7 @@ class Header {
   validateUserLogged(status, cookieAuth) {
     switch (status) {
       case 'logged':
-        if (Cypress.env('environment' == 'desktop')) {
+        if (Cypress.env('environment') == 'desktop') {
           cy.get(elHeader.buttonLoggedUser).should('be.visible')
         }
         cy.getCookie(cookieAuth).should('exist')
@@ -43,6 +43,12 @@ class Header {
       .should('be.visible')
       .type(`${product}{enter}`, { force: true })
     cy.wait(15000)
+  }
+
+  validateLogoLink() {
+    cy.get(elHeader.logoLink).should(($logo) => {
+      expect($logo.parent('a')).to.have.attr('href', '/')
+    })
   }
 }
 

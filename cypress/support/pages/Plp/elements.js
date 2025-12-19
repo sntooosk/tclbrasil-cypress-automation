@@ -1,10 +1,11 @@
 export const ELEMENTS = {
-  productCardBySku: (sku) => `article[data-fs-product-card-sku="${sku}"]`,
-  plpResults: '[data-fs-product-listing-results="true"]',
+  productCard: '[class*="custom-product-card__container"]',
+  productCardName: '[class*="custom-product-card__info-name"]',
+  plpResults: '[class*="section-product-gallery"]',
   filterCheckboxByValue: (value) =>
-    `input[data-fs-checkbox="true"][data-value="${value}"]`,
-  orderByDropdown: 'select[data-testid="search-sort"]',
-  labelResultEmpty: '.EmptySearchPage_empty-search__warning__Zc3z3',
-  buttonApplyFilter: '[data-testid="fs-filter-slider-button-apply"] > div',
-  openFilter: '[data-testid="open-filter-button"] > div',
+    `[class*="filter"] input[value*="${value}"]`,
+  orderByDropdown: '[class*="sort"] select',
+  labelResultEmpty: '[class*="empty-search"]',
+  buttonApplyFilter: '[class*="filter-slider"] [class*="apply"]',
+  openFilter: '[class*="open-filter"]',
 }

@@ -3,6 +3,15 @@
 const elPlpPage = require('./elements').ELEMENTS
 
 class PLPPage {
+  getProductNameBySku(sku) {
+    const catalog = [
+      ...(Cypress.env('produto') || []),
+      ...(Cypress.env('produto-voltagem') || []),
+    ]
+
+    return catalog.find((item) => item.sku === sku)?.name || sku
+  }
+
   visitPLP(linkPLP, siteTitle) {
     cy.visit(linkPLP)
     cy.title().should('contain', siteTitle)
@@ -10,30 +19,42 @@ class PLPPage {
   }
 
   clickBySku(sku) {
-    cy.get(elPlpPage.productCardBySku(sku))
-      .should('be.visible')
-      .find('a[data-fs-custom-product-card-link="true"]')
+    const productName = this.getProductNameBySku(sku)
+
+    cy.contains(elPlpPage.productCardName, productName, {
+      matchCase: false,
+      timeout: 15000,
+    })
+      .parents(elPlpPage.productCard)
+      .first()
+      .find('a')
       .first()
       .click({ force: true })
   }
 
   validateProductCard() {
-    cy.get(elPlpPage.plpResults).find('article').first().should('be.visible')
+    cy.get(elPlpPage.plpResults)
+      .find(elPlpPage.productCard)
+      .first()
+      .should('be.visible')
   }
 
   openFilterAccordion(title) {
     if (Cypress.env('environment') == 'mobile') {
       cy.get(elPlpPage.openFilter).should('be.visible').click({ force: true })
     }
-    cy.contains('button[data-fs-button="true"] span', title)
-      .parents('button')
-      .click({ force: true })
+    cy.contains('button[data-fs-button="true"] span', title).then(
+      ($element) => {
+        cy.wrap($element).parents('button').first().click({ force: true })
+      },
+    )
   }
 
   selectFilter(value) {
-    cy.get(elPlpPage.filterCheckboxByValue(value))
-      .scrollIntoView()
-      .check({ force: true })
+    cy.get(elPlpPage.filterCheckboxByValue(value)).then(($checkbox) => {
+      cy.wrap($checkbox).scrollIntoView()
+      cy.wrap($checkbox).check({ force: true })
+    })
     cy.wait(500)
     if (Cypress.env('environment') == 'mobile') {
       cy.get(elPlpPage.buttonApplyFilter)

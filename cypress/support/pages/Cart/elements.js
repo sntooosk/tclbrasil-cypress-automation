@@ -1,33 +1,27 @@
 export const ELEMENTS = {
-  imageSourceLoading: '.loading > .loading-img > .icon-spinner',
-  buttonCalculateShipping: '#cart-shipping-calculate',
-  buttonCartToOrder: '[data-testid="checkout-button"] > div',
-  buttonCartToOrderForm: '#cart-to-orderform',
-  buttonReturnToCart: '#orderform-minicart-to-cart',
-  divCartFull: '.cart-items',
-  cartItemBySku: (sku) =>
-    `article[data-fs-cart-item="true"][data-sku="${sku}"]`,
-  divCartEmpty: 'div#cartLoadedDiv div.empty-cart-content',
-  inputCoupon:
-    '.full-cart > .summary-template-holder > .summary > .span5 > .coupon-column > .coupon > .coupon-form > .coupon-fieldset > div > .coupon-fields > [data-bind="visible: !isCouponTyped()"] > #cart-coupon',
-  inputZipCode: '#ship-postalCode',
-  labelShippingAvailable: '.srp-result',
-  buttonCouponAdd:
-    '.full-cart > .summary-template-holder > .row-fluid > .span5 > .coupon-column > .coupon > .coupon-form > .coupon-fieldset > div > .coupon-fields > [data-bind="visible: !isCouponTyped()"] > #cart-coupon-add',
-  msgInvalidDiscountCoupon: '.vtex-front-messages-template',
-  buttonItemRemoveProduct: (skuid) => `#item-remove-${skuid}`,
-  imageSourceProduct: (product) => `tr.product-item img[alt*="${product}"]`,
-  buttonIncrementQuantity: (product) =>
-    `//tr[@class='product-item']//img[contains(@alt, '${product}')]/../../..//a[contains(@class, 'item-quantity-change-increment')]/i`,
-  buttonDecrementQuantity: (product) =>
-    `//tr[@class='product-item']//img[contains(@alt, '${product}')]/../../..//a[contains(@class, 'item-quantity-change-decrement')]/i`,
-  labelItemQuantity: (product) =>
-    `//tr[@class='product-item']//img[contains(@alt, '${product}')]/../../..//input[contains(@type, 'tel')]`,
-  shippingButton: '.srp-data > #shipping-calculate-link',
-  linkCoupon:
-    '.full-cart > .summary-template-holder > .row-fluid > .span5 > .coupon-column > .coupon > .coupon-form > .coupon-fieldset > .coupon-data > #cart-link-coupon-add',
-  UnavailableShippingData: '.srp-unavailable',
-  addedValidCoupon:
-    '.full-cart > .summary-template-holder > .row-fluid > .span5 > .coupon-column > .coupon > .coupon-form > .coupon-fieldset > div > .coupon-fields > .info',
-  homeBackButton: '.backButton',
+  imageSourceLoading:
+    '[class*="loading"] [class*="loading-img"] [class*="icon-spinner"]',
+  buttonCalculateShipping: '[class*="shipping-calculate-link"]',
+  buttonCartToOrder: '[class*="btn-place-order"]',
+  buttonCartToOrderForm: '[class*="btn-place-order"]',
+  buttonReturnToCart: '[class*="link-cart"]',
+  divCartFull: '[class*="cart-items"]',
+  divCartEmpty: '[class*="empty-cart-content"]',
+  inputCoupon: '[class*="coupon-value"]',
+  inputZipCode: '[class*="srp-data"] input',
+  labelShippingAvailable: '[class*="srp-result"]',
+  buttonCouponAdd: '[class*="coupon"] [class*="btn"]',
+  msgInvalidDiscountCoupon: '[class*="vtex-front-messages-template"]',
+  buttonItemRemoveProduct: '[class*="item-link-remove"]',
+  imageSourceProduct: (product) =>
+    `[class*="product-item"] img[alt*="${product}"]`,
+  buttonIncrementQuantity: '[class*="item-quantity-change-increment"]',
+  buttonDecrementQuantity: '[class*="item-quantity-change-decrement"]',
+  labelItemQuantity: '[class*="product-item"] input[type="tel"]',
+  shippingButton: '[class*="shipping-calculate-link"]',
+  linkCoupon: '[class*="coupon"] [class*="coupon-data"]',
+  unavailableShippingData: '[class*="srp-unavailable"]',
+  addedValidCoupon: '[class*="coupon-fields"] [class*="info"]',
+  homeBackButton: '[class*="backButton"]',
+  cartRow: '[class*="product-item"]',
 }

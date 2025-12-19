@@ -274,10 +274,6 @@ When('I click button pagament', () => {
   CheckoutPage.clickBtnGoToBuy()
 })
 
-When('The modal pix is displayed', () => {
-  CheckoutPage.validateModalPix()
-})
-
 // My Account navigation
 And('I Access the address page', () => {
   MyAccount.visitAddress()
@@ -427,7 +423,9 @@ When('I select the ordination by {}', (order) => {
   PLPPage.selectOrderBy(order)
 })
 
-Then('the store logo has a link to homepage', () => {})
+Then('the store logo has a link to homepage', () => {
+  Header.validateLogoLink()
+})
 
 Then('No results should be displayed', () => {
   PLPPage.validateResultEmpty()
