@@ -22,15 +22,25 @@ class PLPPage {
   }
 
   openFilterAccordion(title) {
+    if (Cypress.env('environment') == 'mobile') {
+      cy.get(elPlpPage.openFilter).should('be.visible').click({ force: true })
+    }
     cy.contains('button[data-fs-button="true"] span', title)
       .parents('button')
       .click({ force: true })
   }
 
   selectFilter(value) {
-    cy.get(elPlpPage.filterCheckboxByValue(value)).scrollIntoView().check({ force: true })
+    cy.get(elPlpPage.filterCheckboxByValue(value))
+      .scrollIntoView()
+      .check({ force: true })
+    cy.wait(500)
+    if (Cypress.env('environment') == 'mobile') {
+      cy.get(elPlpPage.buttonApplyFilter)
+        .should('be.visible')
+        .click({ force: true })
+    }
   }
-
   validateFilterInUrl(value) {
     cy.url().should('include', value)
   }

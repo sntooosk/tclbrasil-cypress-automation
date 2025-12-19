@@ -4,7 +4,7 @@ Feature: Category tests
   Scenario: Validate product card
     When I'm on the product list page
     Then The product card should be visible
-
+@focus
   Scenario: Validate filter by product
     When I'm on the product list page
     And I select the filter Cor preto

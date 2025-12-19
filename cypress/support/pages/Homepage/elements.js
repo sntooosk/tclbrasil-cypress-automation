@@ -1,6 +1,7 @@
 export const ELEMENTS = {
   menuCategories: '.HeaderNavBarLinks_EmphasisPrincipalLink__JlURY',
-  menuCategoriesMobile: '[href="#menu-drawer-mobile"]',
+  menuCategoriesMobile:
+    '[data-testid="fs-navbar-buttons"] > :nth-child(5) > button',
 
   itemCategoryMenu: () => `.vtex-menu-2-x-styledLinkContent`,
 

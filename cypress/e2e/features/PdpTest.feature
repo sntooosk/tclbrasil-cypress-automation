@@ -35,7 +35,7 @@ Feature: Product Detail Page tests
     When I fill in the form data out of stock
     And I click on the register notification button
     Then I validate the successful registration message notify me
-
+@focus
   Scenario: Validate variation updates product name
     Given I am on the product detail page with variations
     Then each variation option should update the product name

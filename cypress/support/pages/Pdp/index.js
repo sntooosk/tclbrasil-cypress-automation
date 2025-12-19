@@ -111,18 +111,15 @@ class PdpPage {
   validateSizeButtonsNavigation() {
     cy.get(elPdpPage.sizeWrapper)
       .find(elPdpPage.sizeOption)
-      .then(($links) => {
-        const total = $links.length
+      .should('have.length.greaterThan', 0)
+      .then(($options) => {
+        const total = $options.length
 
         Cypress._.times(total, (i) => {
-          cy.get(elPdpPage.sizeWrapper)
-            .find(elPdpPage.sizeOption)
-            .eq(i)
-            .click({ force: true })
+          cy.get(elPdpPage.sizeWrapper).find(elPdpPage.sizeOption).eq(i).click() // sem force
 
+          cy.location('pathname').should('not.be.empty')
           cy.get(elPdpPage.productName).should('be.visible')
-
-          cy.go('back')
         })
       })
   }

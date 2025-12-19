@@ -1,6 +1,6 @@
 Feature: Navigation tests
   As a customer, I want to test the navigation functionalities
-
+@focus
   Scenario: Browse for categories
     And I'm on the home page
     Then I verify the categories available on menu
