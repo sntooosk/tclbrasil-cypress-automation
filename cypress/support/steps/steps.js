@@ -274,10 +274,6 @@ When('I click button pagament', () => {
   CheckoutPage.clickBtnGoToBuy()
 })
 
-When('The modal pix is displayed', () => {
-  CheckoutPage.validateModalPix()
-})
-
 // My Account navigation
 And('I Access the address page', () => {
   MyAccount.visitAddress()
