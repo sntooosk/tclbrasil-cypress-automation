@@ -11,7 +11,6 @@ class PdpPage {
   clickBtnAddToCart() {
     cy.wait(5000)
     cy.get(elPdpPage.buyButton).first().should('exist').click({ force: true })
-    cy.wait(5000)
   }
 
   clickConfirmModalVariation() {
@@ -24,7 +23,6 @@ class PdpPage {
       .first()
       .should('exist')
       .click({ force: true })
-    cy.wait(5000)
   }
 
   typeZipCode(zipCode) {

@@ -40,6 +40,7 @@ class CartPage {
   }
 
   clickBtnCartToOrder() {
+    cy.wait(5000)
     cy.get(elCartPage.buttonCartToOrder).should('exist').click({ force: true })
   }
   clickBtnBackButton() {
