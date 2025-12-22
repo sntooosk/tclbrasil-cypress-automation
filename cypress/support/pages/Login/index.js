@@ -16,8 +16,9 @@ class Login {
   }
 
   clickBtnEnter() {
-    cy.get(elLogin.btnEnter).should('be.visible').click({ force: true })
-    cy.wait(10000)
+    cy.get(elLogin.btnEnter, { timeout: 10000 })
+      .should('be.visible')
+      .click({ force: true })
   }
 }
 export default new Login()

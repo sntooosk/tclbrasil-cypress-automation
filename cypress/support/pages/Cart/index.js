@@ -3,9 +3,27 @@
 const elCartPage = require('./elements').ELEMENTS
 
 class CartPage {
+  waitForCartReady() {
+    cy.get('body', { timeout: 15000 }).then(($body) => {
+      if ($body.find(elCartPage.imageSourceLoading).length) {
+        cy.get(elCartPage.imageSourceLoading, { timeout: 15000 }).should(
+          'not.be.visible',
+        )
+      }
+    })
+
+    cy.get('body', { timeout: 15000 }).then(($body) => {
+      if ($body.find(elCartPage.divCartFull).length) {
+        cy.get(elCartPage.divCartFull).should('be.visible')
+      } else {
+        cy.get(elCartPage.divCartEmpty).should('be.visible')
+      }
+    })
+  }
+
   accessCartPage() {
     cy.visit('/checkout/#/cart')
-    cy.wait(5000)
+    this.waitForCartReady()
   }
 
   clearAndType(element, text) {
@@ -22,6 +40,7 @@ class CartPage {
     cy.visit(`/checkout/cart/add?sc=1&sku=${produto.sku}&qty=${q}&seller=1`, {
       failOnStatusCode: false,
     })
+    this.waitForCartReady()
   }
 
   accessCartPageWithProducts1and2 = (q = 1) => {
@@ -31,6 +50,7 @@ class CartPage {
       `/checkout/cart/add?sc=1&sku=${p1.sku}&qty=${q}&seller=1&sku=${p2.sku}&qty=${q}&seller=1`,
       { failOnStatusCode: false },
     )
+    this.waitForCartReady()
   }
 
   clickBtnCalculateShipping() {
@@ -40,8 +60,10 @@ class CartPage {
   }
 
   clickBtnCartToOrder() {
-    cy.wait(5000)
-    cy.get(elCartPage.buttonCartToOrder).should('exist').click({ force: true })
+    this.waitForCartReady()
+    cy.get(elCartPage.buttonCartToOrder, { timeout: 15000 })
+      .should('be.visible')
+      .click({ force: true })
   }
   clickBtnBackButton() {
     cy.get(elCartPage.homeBackButton).should('exist').click({ force: true })
@@ -54,8 +76,10 @@ class CartPage {
   }
 
   clickBtnReturnToCart() {
-    cy.wait(5000)
-    cy.get(elCartPage.buttonReturnToCart).should('exist').click({ force: true })
+    this.waitForCartReady()
+    cy.get(elCartPage.buttonReturnToCart, { timeout: 10000 })
+      .should('be.visible')
+      .click({ force: true })
   }
 
   validateProductInCartBySku(sku, status) {
@@ -76,66 +100,70 @@ class CartPage {
   }
 
   clickFnItemRemove(skuid) {
-    cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should(
-      'not.be.visible',
-    )
+    this.waitForCartReady()
     cy.get(elCartPage.buttonItemRemoveProduct(skuid)).should('exist')
     cy.get(elCartPage.buttonItemRemoveProduct(skuid))
       .should('be.visible')
       .click({ force: true })
+    this.waitForCartReady()
   }
 
   clickClearCart(skuid1, skuid2) {
-    cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should(
-      'not.be.visible',
-    )
-    cy.get(elCartPage.buttonItemRemoveProduct(skuid1)).should('exist')
-    cy.get(elCartPage.buttonItemRemoveProduct(skuid1))
-      .should('be.visible')
-      .click({ force: true })
+    const skus = [skuid1, skuid2]
 
-    cy.get(elCartPage.imageSourceLoading, { timeout: 3000 }).should(
-      'not.be.visible',
-    )
-    cy.get(elCartPage.buttonItemRemoveProduct(skuid2)).should('exist')
-    cy.get(elCartPage.buttonItemRemoveProduct(skuid2))
-      .should('be.visible')
-      .click({ force: true })
-    cy.get(elCartPage.imageSourceLoading).should('not.be.visible')
+    skus.forEach((sku) => {
+      this.waitForCartReady()
+      cy.get(elCartPage.buttonItemRemoveProduct(sku)).should('exist')
+      cy.get(elCartPage.buttonItemRemoveProduct(sku))
+        .should('be.visible')
+        .click({ force: true })
+    })
+    this.waitForCartReady()
   }
 
   clickXpFnIncrementQuantity(product, quantity) {
-    cy.wait(2500)
     cy.xpath(elCartPage.labelItemQuantity(product))
+      .should('be.visible')
       .invoke('val')
       .then(($value) => {
-        const index = quantity - $value
-        for (let n = 0; n < index; n++) {
-          cy.wait(5000)
+        const currentQuantity = Number($value)
+        const steps = quantity - currentQuantity
+
+        Cypress._.times(steps, (index) => {
+          const expectedQuantity = currentQuantity + index + 1
           cy.xpath(elCartPage.buttonIncrementQuantity(product))
             .should('exist')
             .click({ force: true })
-        }
+          cy.xpath(elCartPage.labelItemQuantity(product)).should(
+            'have.value',
+            expectedQuantity.toString(),
+          )
+        })
       })
   }
 
   clickXpFnDecrementQuantity(product, quantity) {
-    cy.wait(2500)
     cy.xpath(elCartPage.labelItemQuantity(product))
+      .should('be.visible')
       .invoke('val')
       .then(($value) => {
-        const index = quantity - $value
-        for (let n = 0; n > index; n--) {
-          cy.wait(5000)
+        const currentQuantity = Number($value)
+        const steps = currentQuantity - quantity
+
+        Cypress._.times(steps, (index) => {
+          const expectedQuantity = currentQuantity - index - 1
           cy.xpath(elCartPage.buttonDecrementQuantity(product))
             .should('exist')
             .click({ force: true })
-        }
+          cy.xpath(elCartPage.labelItemQuantity(product)).should(
+            'have.value',
+            expectedQuantity.toString(),
+          )
+        })
       })
   }
 
   validateXpFnItemQuantity(product, quantity) {
-    cy.wait(5000)
     cy.xpath(elCartPage.labelItemQuantity(product))
       .invoke('val')
       .should('eq', quantity)
@@ -190,12 +218,14 @@ class CartPage {
       'have.text',
       'Indisponível para este endereço.',
     )
-    cy.wait(1000)
   }
 
   validateFnImgProduct(product, status) {
-    cy.wait(5000)
-    cy.get(elCartPage.imageSourceLoading).should('not.be.visible')
+    cy.get('body').then(($body) => {
+      if ($body.find(elCartPage.imageSourceLoading).length) {
+        cy.get(elCartPage.imageSourceLoading).should('not.be.visible')
+      }
+    })
     switch (status) {
       case 'visible':
         cy.get(elCartPage.divCartFull).first().should('be.visible')

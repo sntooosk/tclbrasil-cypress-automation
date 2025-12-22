@@ -7,12 +7,10 @@ class Minicart {
       'have.text',
       'Your Cart is emptyStart Shopping',
     )
-    cy.wait(5000)
   }
 
   validateLanguageMinicart() {
     cy.get(elMinicart.minicartTextWithProduct).should('be.visible')
-    cy.wait(2000)
   }
 }
 export default new Minicart()

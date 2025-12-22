@@ -2,35 +2,45 @@
 const elMyAccount = require('./elements').ELEMENTS
 
 class MyAccount {
+  waitForAccountShell() {
+    cy.get(elMyAccount.clickBtnExit, { timeout: 15000 }).should('be.visible')
+  }
+
+  waitForAddressSection() {
+    cy.get('body', { timeout: 15000 }).then(($body) => {
+      if ($body.find(elMyAccount.tableMyAddress).length) {
+        cy.get(elMyAccount.tableMyAddress).should('be.visible')
+      } else {
+        cy.xpath(elMyAccount.buttonAddNewAddress).should('exist')
+      }
+    })
+  }
+
   accessMyAccountPage() {
-    cy.wait(1000)
     cy.visit('/account#/')
-    cy.wait(5000)
+    this.waitForAccountShell()
   }
 
   visitAddress() {
-    cy.wait(5000)
     cy.visit('/account#/addresses')
-    cy.wait(5000)
+    this.waitForAddressSection()
   }
 
   visitMyOrders() {
-    cy.wait(5000)
     cy.visit('/account#/orders')
-    cy.wait(5000)
+    cy.url({ timeout: 15000 }).should('include', '/orders')
   }
 
   visitProfile() {
-    cy.wait(5000)
     cy.visit('/account#/profile')
-    cy.wait(5000)
+    this.waitForAccountShell()
   }
 
   clickNewAddress() {
     cy.xpath(elMyAccount.buttonAddNewAddress)
       .should('exist')
       .click({ force: true })
-    cy.wait(5000)
+    cy.get(elMyAccount.inputZipCode, { timeout: 10000 }).should('be.visible')
   }
 
   clickEditAddress() {
@@ -38,20 +48,22 @@ class MyAccount {
       .first()
       .should('exist')
       .click({ force: true })
-    cy.wait(2000)
+    cy.get(elMyAccount.inputZipCode, { timeout: 10000 }).should('be.visible')
   }
 
   clickDeleteAddress() {
+    this.waitForAddressSection()
     cy.xpath(elMyAccount.btnDeleteAddress)
       .should('exist')
       .and('be.visible')
       .click({ force: true })
-    cy.wait(2500)
+    this.waitForAddressSection()
   }
 
   clickEditPersonalData() {
-    cy.wait(5000)
-    cy.get(elMyAccount.buttonEditPersonalData).contains('Editar').click()
+    cy.get(elMyAccount.buttonEditPersonalData, { timeout: 10000 })
+      .contains('Editar')
+      .click()
   }
 
   selectGender(gender) {
@@ -59,8 +71,7 @@ class MyAccount {
   }
 
   typeZipCode(zipCode) {
-    cy.wait(2000)
-    cy.get(elMyAccount.inputZipCode).then(($input) => {
+    cy.get(elMyAccount.inputZipCode, { timeout: 10000 }).then(($input) => {
       cy.wrap($input).focus()
       cy.wrap($input).clear()
       cy.wrap($input).type(zipCode)
@@ -68,8 +79,7 @@ class MyAccount {
   }
 
   typeNumber(number) {
-    cy.wait(2000)
-    cy.get(elMyAccount.inputNumber).then(($input) => {
+    cy.get(elMyAccount.inputNumber, { timeout: 10000 }).then(($input) => {
       cy.wrap($input).should('be.enabled').focus()
       cy.wrap($input).clear()
       cy.wrap($input).type(number, { force: true })
@@ -77,8 +87,7 @@ class MyAccount {
   }
 
   typeComplement(complement) {
-    cy.wait(2000)
-    cy.get(elMyAccount.inputComplement).then(($input) => {
+    cy.get(elMyAccount.inputComplement, { timeout: 10000 }).then(($input) => {
       cy.wrap($input).should('be.enabled').focus()
       cy.wrap($input).clear()
       cy.wrap($input).type(complement, { force: true })
@@ -126,21 +135,19 @@ class MyAccount {
   }
 
   clickSaveNewAddress() {
-    cy.wait(5000)
-    cy.get(elMyAccount.buttonSaveNewAddress)
+    cy.get(elMyAccount.buttonSaveNewAddress, { timeout: 10000 })
       .contains('Adicionar endereço')
       .should('exist')
       .dblclick({ force: true })
-    cy.wait(5000)
+    this.waitForAddressSection()
   }
 
   clickSaveEditedAddress() {
-    cy.wait(5000)
-    cy.get(elMyAccount.buttonSaveEditedAddress)
+    cy.get(elMyAccount.buttonSaveEditedAddress, { timeout: 10000 })
       .contains('Salvar endereço')
       .should('exist')
       .dblclick({ force: true })
-    cy.wait(5000)
+    this.waitForAddressSection()
   }
 
   validateBodyEmptyEndereco() {
@@ -154,12 +161,11 @@ class MyAccount {
     cy.xpath(elMyAccount.buttonSavePersonalData)
       .should('exist')
       .click({ force: true })
-    cy.wait(5000)
+    cy.get(elMyAccount.labelNameSaved, { timeout: 15000 }).should('exist')
   }
 
   validateAddressTable() {
-    cy.wait(5000)
-    cy.get(elMyAccount.tableMyAddress).should('be.visible')
+    cy.get(elMyAccount.tableMyAddress, { timeout: 10000 }).should('be.visible')
   }
 
   validateAddressSavedStreet(street) {
@@ -199,7 +205,6 @@ class MyAccount {
   }
 
   validateMyOrdersPage() {
-    cy.wait(5000)
     cy.url().should('include', 'orders')
   }
 
@@ -234,14 +239,17 @@ class MyAccount {
   }
 
   clickConfirmExitPopup(local) {
-    cy.wait(4000)
     switch (local) {
       case 'myaccount':
-        cy.get(elMyAccount.buttonPopupExit).contains('Sair').click()
+        cy.get(elMyAccount.buttonPopupExit, { timeout: 10000 })
+          .contains('Sair')
+          .click()
         break
       case 'login':
         if (Cypress.env('environment') == 'mobile') {
-          cy.get(elMyAccount.buttonPopupExit).contains('Sair').click()
+          cy.get(elMyAccount.buttonPopupExit, { timeout: 10000 })
+            .contains('Sair')
+            .click()
         }
         break
     }
