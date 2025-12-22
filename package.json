@@ -11,7 +11,8 @@
     "cy:run": "cypress run",
     "cy:run:desktop": "dotenv -- cypress run -c viewportWidth=1921,viewportHeight=1081 --env environment=desktop",
     "cy:run:mobile": "dotenv -- cypress run -c viewportWidth=375,viewportHeight=667 --env environment=mobile",
-    "cy:open:desktop": "dotenv -- cypress open -c viewportWidth=1921,viewportHeight=1081 --env environment=desktop",
+    "cy:run:smoke:desktop": "dotenv -- npm run cy:run:desktop -- --spec cypress/e2e/features/SmokeTest.feature",
+    "cy:run:smoke:mobile": "dotenv -- npm run cy:run:mobile -- --spec cypress/e2e/features/SmokeTest.feature",
     "cy:open:mobile": "dotenv -- cypress open -c viewportWidth=375,viewportHeight=667 --env environment=mobile",
     "bs:run:desktop": "dotenv -- browserstack-cypress run -c viewportWidth=1921,viewportHeight=1081 --env environment=desktop",
     "bs:run:mobile": "dotenv -- browserstack-cypress run -c viewportWidth=375,viewportHeight=667 --env environment=mobile",
@@ -22,9 +23,7 @@
     "bs:smoke:theme:desktop": "npm run bs:run:desktop -- --spec cypress/e2e/features/SmokeTest.feature -b \"[CI/CD][${CYPRESS_DEPLOY_ENV}] - TCL BR - Store Theme - Smoke Test Desktop\"",
     "bs:smoke:theme:mobile": "npm run bs:run:mobile -- --spec cypress/e2e/features/SmokeTest.feature -b \"[CI/CD][${CYPRESS_DEPLOY_ENV}] - TCL BR - Store Theme - Smoke Test Mobile\"",
     "bs:spec:desktop": "npm run bs:run:desktop -- --spec cypress/e2e/features/PdpTest.feature -b \"TCL BR - Spec Test Desktop\"",
-    "bs:spec:mobile": "npm run bs:run:mobile -- --spec cypress/e2e/features/PdpTest.feature -b \"TCL BR - Spec Test Mobile\"",
-    "bs:black:desktop": "npm run bs:run:desktop -- --spec cypress/e2e/features/LoginTest.feature,cypress/e2e/features/CheckoutTest.feature -b \"TCL BR - Black Friday Tests Desktop\"",
-    "bs:black:mobile": "npm run bs:run:desktop -- --spec cypress/e2e/features/LoginTest.feature,cypress/e2e/features/CheckoutTest.feature -b \"TCL BR - Black Friday Tests Mobile\""
+    "bs:spec:mobile": "npm run bs:run:mobile -- --spec cypress/e2e/features/PdpTest.feature -b \"TCL BR - Spec Test Mobile\""
   },
   "keywords": [
     "cypress",

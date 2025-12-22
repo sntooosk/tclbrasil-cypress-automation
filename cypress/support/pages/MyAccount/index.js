@@ -27,7 +27,9 @@ class MyAccount {
   }
 
   clickNewAddress() {
-    cy.xpath(elMyAccount.buttonAddNewAddress).should('exist').click({ force: true })
+    cy.xpath(elMyAccount.buttonAddNewAddress)
+      .should('exist')
+      .click({ force: true })
     cy.wait(5000)
   }
 
@@ -149,7 +151,9 @@ class MyAccount {
   }
 
   clickSavePersonalData() {
-    cy.xpath(elMyAccount.buttonSavePersonalData).should('exist').click({ force: true })
+    cy.xpath(elMyAccount.buttonSavePersonalData)
+      .should('exist')
+      .click({ force: true })
     cy.wait(5000)
   }
 
@@ -159,11 +163,15 @@ class MyAccount {
   }
 
   validateAddressSavedStreet(street) {
-    cy.get(elMyAccount.labelMyAddressSavedStreet).first().should('have.text', street)
+    cy.get(elMyAccount.labelMyAddressSavedStreet)
+      .first()
+      .should('have.text', street)
   }
 
   validateAddressSavedNumber(number) {
-    cy.get(elMyAccount.labelMyAddressSavedNumber).first().should('have.text', number)
+    cy.get(elMyAccount.labelMyAddressSavedNumber)
+      .first()
+      .should('have.text', number)
   }
 
   validateAddressSavedComplement(complement) {
@@ -173,15 +181,21 @@ class MyAccount {
   }
 
   validateAddressSavedZipCode(zipCode) {
-    cy.get(elMyAccount.labelMyAddressSavedZipCode).first().should('have.text', zipCode)
+    cy.get(elMyAccount.labelMyAddressSavedZipCode)
+      .first()
+      .should('have.text', zipCode)
   }
 
   validateAddressSavedCity(city) {
-    cy.get(elMyAccount.labelMyAddressSavedCity).first().should('have.text', city)
+    cy.get(elMyAccount.labelMyAddressSavedCity)
+      .first()
+      .should('have.text', city)
   }
 
   validateAddressSavedCountry(country) {
-    cy.get(elMyAccount.labelMyAddressSavedCountry).first().should('have.text', country)
+    cy.get(elMyAccount.labelMyAddressSavedCountry)
+      .first()
+      .should('have.text', country)
   }
 
   validateMyOrdersPage() {
@@ -194,15 +208,21 @@ class MyAccount {
   }
 
   validateLastNameSaved(lastNameSaved) {
-    cy.get(elMyAccount.labelLastNameSaved).first().should('have.text', lastNameSaved)
+    cy.get(elMyAccount.labelLastNameSaved)
+      .first()
+      .should('have.text', lastNameSaved)
   }
 
   validateDocumentSaved(documentSaved) {
-    cy.get(elMyAccount.labelDocumentSaved).first().should('have.text', documentSaved)
+    cy.get(elMyAccount.labelDocumentSaved)
+      .first()
+      .should('have.text', documentSaved)
   }
 
   validateGenderSaved(genderSaved) {
-    cy.get(elMyAccount.labelGenderSaved).first().should('have.text', genderSaved)
+    cy.get(elMyAccount.labelGenderSaved)
+      .first()
+      .should('have.text', genderSaved)
   }
 
   validateBirthDate(birthDate) {

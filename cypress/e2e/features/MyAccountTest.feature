@@ -30,7 +30,7 @@ Feature: My Account tests
   Scenario: At Desktop check my orders
     And I Access my orders page
     Then I check that I am in the correct page
-
+@focus
   Scenario: Remove an address
     And I Access the address page
     And I remove an address

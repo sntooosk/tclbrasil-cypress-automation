@@ -3,15 +3,12 @@ name: Cypress
 on:
   push:
     branches:
-      - '**'
-  pull_request:
-    branches:
-      - '**'
+      - main
   workflow_dispatch:
 
 jobs:
   mobile:
-    name: Mobile
+    name: Mobile Smoke
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,12 +16,10 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run cy:run:mobile
-        env:
-          CYPRESS_DEPLOY_ENV: ci
+      - run: npm run cy:run:smoke:mobile
 
   desktop:
-    name: Desktop
+    name: Desktop Smoke
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,6 +27,4 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run cy:run:desktop
-        env:
-          CYPRESS_DEPLOY_ENV: ci
+      - run: npm run cy:run:smoke:desktop
