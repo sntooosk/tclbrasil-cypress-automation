@@ -24,12 +24,16 @@ module.exports = defineConfig({
     baseUrl: process.env.VTEX_WORKSPACE || 'https://www.lojatcl.com.br',
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx,feature}',
 
+    browser: 'chrome',
+
     setupNodeEvents(on, config) {
       on('file:preprocessor', cucumber())
 
-      on('before:browser:launch', (_browser, launchOptions) => {
-        const ua = userAgents[config.env.environment]
-        if (ua) launchOptions.args.push(`--user-agent=${ua}`)
+      on('before:browser:launch', (browser, launchOptions) => {
+        if (browser.name === 'chrome') {
+          const ua = userAgents[config.env.environment]
+          if (ua) launchOptions.args.push(`--user-agent=${ua}`)
+        }
         return launchOptions
       })
 
