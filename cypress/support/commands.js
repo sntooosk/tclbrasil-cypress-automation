@@ -1,13 +1,33 @@
-// cypress/support/commands.js
+// create various custom commands and overwrite
+// existing commands.
+//
+// For more comprehensive examples of custom
+// commands please read more here:
+// https://on.cypress.io/custom-commands
+// ***********************************************
+//
+//
+// -- This is a parent command --
+// Cypress.Commands.add("login", (email, password) => { ... })
+//
+//
+// -- This is a child command --
+// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
+//
+//
+// -- This is a dual command --
+// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
+//
+//
+// -- This is will overwrite an existing command --
+// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
 const {
   count,
   country,
   sallesChannel,
 } = require('../utils/getProducts/getParams')
 
-// =======================
-// API – SEARCH PRODUCTS (PUBLIC / SAME DOMAIN)
-// =======================
 Cypress.Commands.add(
   'getAvailableProducts',
   (query, cep, envKey = 'produto') => {
@@ -21,17 +41,18 @@ Cypress.Commands.add(
       .then(({ body }) => {
         const products =
           body?.products
-            ?.map((p) => {
-              const item = p.items?.[0]
+            ?.map((product) => {
+              const item = product.items?.[0]
               const seller = item?.sellers?.[0]
+              const offer = seller?.commertialOffer
 
               return {
-                name: p.productName,
-                productId: p.productId,
+                name: product.productName,
+                productId: product.productId,
                 sku: item?.itemId,
-                link: p.link,
-                quantity: seller?.commertialOffer?.AvailableQuantity ?? 0,
-                availability: seller?.commertialOffer?.IsAvailable ?? false,
+                link: product.link,
+                quantity: offer?.AvailableQuantity ?? 0,
+                availability: offer?.IsAvailable ?? false,
               }
             })
             .filter((p) => p.sku && p.link) || []
@@ -56,9 +77,12 @@ Cypress.Commands.add(
               },
             })
             .then(({ body }) => {
-              const item = body?.items?.[0]
+              const simulatedItem = body?.items?.[0]
 
-              if (item?.availability === 'available' && item?.quantity > 0) {
+              if (
+                simulatedItem?.availability === 'available' &&
+                simulatedItem?.quantity > 0
+              ) {
                 available.push({ ...product, cep })
               }
             })
@@ -70,13 +94,10 @@ Cypress.Commands.add(
   },
 )
 
-// =======================
-// CART – CLEAR (PUBLIC API)
-// =======================
 Cypress.Commands.add('clearCart', () => {
   cy.request('/api/checkout/pub/orderForm').then(({ body }) => {
     const orderFormId = body?.orderFormId
-    const hasItems = body?.items?.length > 0
+    const hasItems = (body?.items?.length ?? 0) > 0
 
     if (!orderFormId || !hasItems) return
 

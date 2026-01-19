@@ -6,12 +6,10 @@ class Header {
   clickBtnLogin() {
     if (Cypress.env('environment') == 'mobile') {
       cy.wait(15000)
-      cy.get(elHeader.buttonLoginMobile).first().click({ force: true })
+      cy.get(elHeader.buttonLoginMobile).click({ force: true })
     } else if (Cypress.env('environment') == 'desktop') {
-      cy.get(elHeader.buttonLogin)
-        .first()
-        .should('be.visible')
-        .click({ force: true })
+      cy.wait(15000)
+      cy.get(elHeader.buttonLogin).click({ force: true })
     }
   }
 

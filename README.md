@@ -1,6 +1,6 @@
 # TCL BR Cypress Automation
 
-[![Version](https://img.shields.io/badge/version-2.40.0-blue)](https://github.com/ELX-LATAM-DevOps/tcl-d2c-tclbrasil-cypress-automation/releases)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue)](https://github.com/ELX-LATAM-DevOps/tcl-d2c-tclbrasil-cypress-automation/releases)
 [![Cypress](https://img.shields.io/badge/Cypress-f0fcf8?logo=cypress&logoColor=058a5e)](https://www.cypress.io/)
 [![Cucumber](https://img.shields.io/badge/Cucumber-1dbb68?logo=cucumber&logoColor=212529)](https://cucumber.io/)
 [![BrowserStack](https://img.shields.io/badge/BrowserStack-142434?logo=browserstack&logoColor=ff7102)](https://www.browserstack.com/docs/automate/cypress)
@@ -114,7 +114,7 @@ npm run bs:run:desktop
 
 #### CI/CD Environment Variable
 
-The CI/CD pipeline injects `CYPRESS_DEPLOY_ENV` (e.g., `PRE` or `POS`) through the [reusable workflow](https://github.com/ELX-LATAM-DevOps/eluxlab-actions/blob/main/.github/workflows/cypress.yml).  
+The CI/CD pipeline injects `CYPRESS_DEPLOY_ENV` (e.g., `PRE` or `POS`) through the [reusable workflow](https://github.com/ELX-LATAM-DevOps/eluxlab-actions/blob/main/.github/workflows/cypress.yml).
 This variable identifies the deploy stage in BrowserStack build names and is consumed by the CI-only scripts below:
 
 ```json
