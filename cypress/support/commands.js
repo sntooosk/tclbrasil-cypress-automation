@@ -22,11 +22,9 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-const {
-  count,
-  country,
-  sallesChannel,
-} = require('../utils/getProducts/getParams')
+const count = 5
+const country = 'BRA'
+const sallesChannel = 1
 
 Cypress.Commands.add(
   'getAvailableProducts',
