@@ -7,8 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- New scenarios and improvements based on learning and refactoring cycles.
-- Expansion of regression coverage and stability improvements.
+## [1.2.0] - 2026-01-29
+
+### Added
+
+- Regressive test execution for both desktop and mobile.
+- GitHub Actions workflow for regressive execution (`regressive.yml`).
+
+### Changed
+
+- Updated `getAvailabeProducts` to return an object instead of an array.
+- Adjusted product consumption to use `Object.values(...)`.
+
+### Fixed
+
+- Fixed undefined index errors in `before()` hooks.
+- Stabilized product selection for `Cypress.env('produto-XX-*')`.
 
 ## [1.1.0] - 2026-01-19
 
@@ -29,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Add to cart, minicart and cart management.
   - Checkout flow including customer data, shipping and payment.
   - Payment validation using Pix.
-- Smoke Test suite covering critical paths to validate application health quickly.
+- Smoke test suite covering critical paths to validate application health quickly.
 
 #### Functional Scenarios
 

@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-assigning-return-values */
 import { And, Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 import HomePage from '../pages/Homepage'
 import Header from '../pages/Header'
@@ -29,7 +30,7 @@ import PLP from '../../fixtures/plp.json'
 import itemsCategories from '../../fixtures/itemsCategories.json'
 import addressData from '../../fixtures/addressData.json'
 import accessData from '../../fixtures/accessData.json'
-import product from '../../fixtures/product.json'
+import productUnavailable from '../../fixtures/productUnavailable.json'
 import personalData from '../../fixtures/personalData.json'
 import siteTitle from '../../fixtures/siteTitle.json'
 
@@ -43,11 +44,11 @@ Given("I'm on the product list page", () => {
 })
 
 Given("I'm on the product detail page", () => {
-  PdpPage.urlPDP(Cypress.env('produto')[0].link)
+  PdpPage.urlPDP(Cypress.env('produto-01-url'))
 })
 
 Given('I am on the product detail page with variations', () => {
-  PdpPage.urlPDP(Cypress.env('produto-voltagem')[0].link)
+  PdpPage.urlPDP(Cypress.env('produto-02-url'))
 })
 
 Given("I'm on an out of stock product page", () => {
@@ -102,15 +103,15 @@ When('I do login using incorrect email', () => {
 
 // Search and navigation
 When('I search for the product on the search bar', () => {
-  Header.typeSearchBar(Cypress.env('produto')[0].name)
+  Header.typeSearchBar(Cypress.env('produto-01-name'))
 })
 
 When('I search for a non-existent product', () => {
-  Header.typeSearchBar(product[4].Product)
+  Header.typeSearchBar(productUnavailable.name)
 })
 
 When('Access the PDP', () => {
-  PLPPage.clickBySku(Cypress.env('produto')[0].sku)
+  PLPPage.clickBySku(Cypress.env('produto-01-sku'))
 })
 
 // PDP interactions
@@ -160,11 +161,11 @@ When('Avanced to checkout', () => {
 })
 
 When('I add the quantity for {} units', (quantity) => {
-  CartPage.clickXpFnIncrementQuantity(Cypress.env('produto')[0].name, quantity)
+  CartPage.clickXpFnIncrementQuantity(Cypress.env('produto-01-name'), quantity)
 })
 
 When('I reduce the quantity for {} units', (quantity) => {
-  CartPage.clickXpFnDecrementQuantity(Cypress.env('produto')[0].name, quantity)
+  CartPage.clickXpFnDecrementQuantity(Cypress.env('produto-01-name'), quantity)
 })
 
 When('I type a invalid discount coupon', () => {
@@ -178,13 +179,13 @@ When('I type a valid discount coupon', () => {
 })
 
 When('I remove the item from cart', () => {
-  CartPage.clickFnItemRemove(Cypress.env('produto')[0].sku)
+  CartPage.clickFnItemRemove(Cypress.env('produto-01-sku'))
 })
 
 When('I remove all items from cart', () => {
   CartPage.clickClearCart(
-    Cypress.env('produto')[0].sku,
-    Cypress.env('produto')[1].sku,
+    Cypress.env('produto-01-sku'),
+    Cypress.env('produto-02-sku'),
   )
 })
 
@@ -361,19 +362,16 @@ Then('I must not be logged into the site', () => {
 })
 
 Then('the product should be displayed in the cart', () => {
-  CartPage.validateProductInCartBySku(Cypress.env('produto')[0].sku, 'visible')
+  CartPage.validateProductInCartBySku(Cypress.env('produto-01-sku'), 'visible')
 })
 
 Then('the product variation should be displayed in the cart', () => {
-  CartPage.validateProductInCartBySku(
-    Cypress.env('produto-voltagem')[0].sku,
-    'visible',
-  )
+  CartPage.validateProductInCartBySku(Cypress.env('produto-02-sku'), 'visible')
 })
 
 Then('I validate if the product is not in the cart', () => {
   CartPage.accessCartPage()
-  CartPage.validateFnImgProduct(Cypress.env('produto')[0].name, 'not visible')
+  CartPage.validateFnImgProduct(Cypress.env('produto-01-name'), 'not visible')
 })
 
 Then('I validate if is clean cart', () => {
@@ -382,12 +380,12 @@ Then('I validate if is clean cart', () => {
 
 Then('I validate if the two items are in cart', () => {
   CartPage.accessCartPage()
-  CartPage.validateFnImgProduct(Cypress.env('produto')[0].name, 'visible')
-  CartPage.validateFnImgProduct(Cypress.env('produto')[1].name, 'visible')
+  CartPage.validateFnImgProduct(Cypress.env('produto-01-name'), 'visible')
+  CartPage.validateFnImgProduct(Cypress.env('produto-02-name'), 'visible')
 })
 
 Then('I validate if the quantity has been changed to {}', (quantity) => {
-  CartPage.validateXpFnItemQuantity(Cypress.env('produto')[0].name, quantity)
+  CartPage.validateXpFnItemQuantity(Cypress.env('produto-01-name'), quantity)
 })
 
 Then('The shipping table should be displayed', () => {
