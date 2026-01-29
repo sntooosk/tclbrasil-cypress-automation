@@ -1,6 +1,6 @@
 {
   "name": "tcl-d2c-tclbrasil-cypress-automation",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Cypress automation framework for TCL BR",
   "scripts": {
     "postinstall": "husky",
@@ -12,6 +12,8 @@
     "cy:open:mobile": "dotenv -- cypress open -c viewportWidth=375,viewportHeight=667 --env environment=mobile",
     "cy:run:desktop": "dotenv -- cypress run -c viewportWidth=1921,viewportHeight=1081 --env environment=desktop",
     "cy:run:mobile": "dotenv -- cypress run -c viewportWidth=375,viewportHeight=667 --env environment=mobile",
+    "cy:run:regressive:desktop": "npm run cy:run:desktop",
+    "cy:run:regressive:mobile": "npm run cy:run:mobile",
     "cy:run:smoke:desktop": "npm run cy:run:desktop -- --spec cypress/e2e/features/SmokeTest.feature",
     "cy:run:smoke:mobile": "npm run cy:run:mobile -- --spec cypress/e2e/features/SmokeTest.feature",
     "bs:run:desktop": "dotenv -- browserstack-cypress run -c viewportWidth=1921,viewportHeight=1081 --env environment=desktop",

@@ -11,11 +11,6 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm run cy:run:smoke:mobile
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: Mobile
-          path: cypress/videos
 
   desktop:
     name: Desktop Smoke
@@ -27,8 +22,3 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm run cy:run:smoke:desktop
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: Desktop
-          path: cypress/videos

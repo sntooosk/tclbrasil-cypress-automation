@@ -17,18 +17,17 @@ class CartPage {
   }
 
   accessCartPageWithProduct = (q = 1) => {
-    const produto = Cypress.env('produto')[0]
-
-    cy.visit(`/checkout/cart/add?sc=1&sku=${produto.sku}&qty=${q}&seller=1`, {
-      failOnStatusCode: false,
-    })
+    cy.visit(
+      `/checkout/cart/add?sc=1&sku=${Cypress.env('produto-01-sku')}&qty=${q}&seller=1`,
+      {
+        failOnStatusCode: false,
+      },
+    )
   }
 
   accessCartPageWithProducts1and2 = (q = 1) => {
-    const [p1, p2] = Cypress.env('produto')
-
     cy.visit(
-      `/checkout/cart/add?sc=1&sku=${p1.sku}&qty=${q}&seller=1&sku=${p2.sku}&qty=${q}&seller=1`,
+      `/checkout/cart/add?sc=1&sku=${Cypress.env('produto-01-sku')}&qty=${q}&seller=1&sku=${Cypress.env('produto-02-sku')}&qty=${q}&seller=1`,
       { failOnStatusCode: false },
     )
   }
