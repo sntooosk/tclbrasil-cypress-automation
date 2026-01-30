@@ -53,7 +53,7 @@ Given('I am on the product detail page with variations', () => {
 
 Given("I'm on an out of stock product page", () => {
   PdpPage.urlPDP(
-    'https://www.lojatcl.com.br/smart-tv-tcl-43-polegadas-full-hd-qled-s5k-wifi-bluetooth-google-tv-2-hdmi-hdr10-dolby-audio-43s5k-32536/p',
+    '/smart-tv-tcl-85-polegadas-qled-mini-led-4k-c8k-wifi-bluetooth-google-tv-288hz-vrr-hdr10-85c8k-32418/p',
   )
 })
 

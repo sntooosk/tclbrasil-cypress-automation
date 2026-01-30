@@ -33,7 +33,7 @@ before(() => {
     Cypress.env('produto-01-sku', p.sku)
   })
 
-  getAvailabeProducts('Ar condicionado', addressData[0].zipCode).then(
+  getAvailabeProducts('Lava e Seca TCL', addressData[0].zipCode).then(
     (produto) => {
       const p = Object.values(produto)[0]
 

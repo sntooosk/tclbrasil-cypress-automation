@@ -1,0 +1,72 @@
+name: Cypress Run Feature
+
+on:
+  workflow_dispatch:
+    inputs:
+      feature:
+        description: 'Selecione a feature'
+        required: true
+        type: choice
+        options:
+          - CartTest
+          - CategoryTest
+          - CheckoutTest
+          - LoginTest
+          - MinicartTest
+          - MyAccountTest
+          - NavigationTest
+          - OrderTest
+          - PdpTest
+          - SmokeTest
+
+      device:
+        description: 'Selecione o dispositivo'
+        required: true
+        type: choice
+        options:
+          - Desktop
+          - Mobile
+          - Desktop and Mobile
+
+jobs:
+  cypress-desktop:
+    name: Run Cypress (Desktop)
+    if: ${{ inputs.device == 'Desktop' || inputs.device == 'Desktop and Mobile' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Cypress feature (Desktop)
+        run: |
+          npm run cy:run:desktop -- --spec cypress/e2e/features/${{ inputs.feature }}.feature
+
+  cypress-mobile:
+    name: Run Cypress (Mobile)
+    if: ${{ inputs.device == 'Mobile' || inputs.device == 'Desktop and Mobile' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Cypress feature (Mobile)
+        run: |
+          npm run cy:run:mobile -- --spec cypress/e2e/features/${{ inputs.feature }}.feature

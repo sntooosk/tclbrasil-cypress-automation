@@ -1,4 +1,4 @@
-name: Regressive Tests
+name: Cypress Regression Tests
 
 on:
   workflow_dispatch:

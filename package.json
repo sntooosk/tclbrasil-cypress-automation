@@ -1,6 +1,6 @@
 {
   "name": "tcl-d2c-tclbrasil-cypress-automation",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Cypress automation framework for TCL BR",
   "scripts": {
     "postinstall": "husky",
