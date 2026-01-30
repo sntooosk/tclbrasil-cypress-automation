@@ -31,6 +31,7 @@ class PLPPage {
   }
 
   selectFilter(value) {
+    // eslint-disable-next-line cypress/unsafe-to-chain-command
     cy.get(elPlpPage.filterCheckboxByValue(value))
       .scrollIntoView()
       .check({ force: true })

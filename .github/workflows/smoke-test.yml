@@ -1,4 +1,4 @@
-name: Smoke Test
+name: Cypress Smoke Tests
 
 on: [push, workflow_dispatch]
 
