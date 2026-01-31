@@ -6,7 +6,7 @@ class PLPPage {
   visitPLP(linkPLP, siteTitle) {
     cy.visit(linkPLP)
     cy.title().should('contain', siteTitle)
-    cy.wait(15000)
+    cy.get(elPlpPage.plpResults, { timeout: 15000 }).should('be.visible')
   }
 
   clickBySku(sku) {
@@ -35,7 +35,7 @@ class PLPPage {
     cy.get(elPlpPage.filterCheckboxByValue(value))
       .scrollIntoView()
       .check({ force: true })
-    cy.wait(500)
+    cy.get(elPlpPage.plpResults).should('be.visible')
     if (Cypress.env('environment') == 'mobile') {
       cy.get(elPlpPage.buttonApplyFilter)
         .should('be.visible')

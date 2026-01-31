@@ -5,7 +5,9 @@ const elCartPage = require('./elements').ELEMENTS
 class CartPage {
   accessCartPage() {
     cy.visit('/checkout/#/cart')
-    cy.wait(5000)
+    cy.get(elCartPage.imageSourceLoading, { timeout: 15000 }).should(
+      'not.be.visible',
+    )
   }
 
   clearAndType(element, text) {
@@ -39,8 +41,9 @@ class CartPage {
   }
 
   clickBtnCartToOrder() {
-    cy.wait(5000)
-    cy.get(elCartPage.buttonCartToOrder).should('exist').click({ force: true })
+    cy.get(elCartPage.buttonCartToOrder, { timeout: 15000 })
+      .should('exist')
+      .click({ force: true })
   }
   clickBtnBackButton() {
     cy.get(elCartPage.homeBackButton).should('exist').click({ force: true })
@@ -53,8 +56,9 @@ class CartPage {
   }
 
   clickBtnReturnToCart() {
-    cy.wait(5000)
-    cy.get(elCartPage.buttonReturnToCart).should('exist').click({ force: true })
+    cy.get(elCartPage.buttonReturnToCart, { timeout: 15000 })
+      .should('exist')
+      .click({ force: true })
   }
 
   validateProductInCartBySku(sku, status) {
@@ -104,13 +108,15 @@ class CartPage {
   }
 
   clickXpFnIncrementQuantity(product, quantity) {
-    cy.wait(2500)
     cy.xpath(elCartPage.labelItemQuantity(product))
+      .should('exist')
       .invoke('val')
       .then(($value) => {
         const index = quantity - $value
         for (let n = 0; n < index; n++) {
-          cy.wait(5000)
+          cy.get(elCartPage.imageSourceLoading, { timeout: 10000 }).should(
+            'not.be.visible',
+          )
           cy.xpath(elCartPage.buttonIncrementQuantity(product))
             .should('exist')
             .click({ force: true })
@@ -119,13 +125,15 @@ class CartPage {
   }
 
   clickXpFnDecrementQuantity(product, quantity) {
-    cy.wait(2500)
     cy.xpath(elCartPage.labelItemQuantity(product))
+      .should('exist')
       .invoke('val')
       .then(($value) => {
         const index = quantity - $value
         for (let n = 0; n > index; n--) {
-          cy.wait(5000)
+          cy.get(elCartPage.imageSourceLoading, { timeout: 10000 }).should(
+            'not.be.visible',
+          )
           cy.xpath(elCartPage.buttonDecrementQuantity(product))
             .should('exist')
             .click({ force: true })
@@ -134,7 +142,6 @@ class CartPage {
   }
 
   validateXpFnItemQuantity(product, quantity) {
-    cy.wait(5000)
     cy.xpath(elCartPage.labelItemQuantity(product))
       .invoke('val')
       .should('eq', quantity)
@@ -189,11 +196,9 @@ class CartPage {
       'have.text',
       'Indisponível para este endereço.',
     )
-    cy.wait(1000)
   }
 
   validateFnImgProduct(product, status) {
-    cy.wait(5000)
     cy.get(elCartPage.imageSourceLoading).should('not.be.visible')
     switch (status) {
       case 'visible':

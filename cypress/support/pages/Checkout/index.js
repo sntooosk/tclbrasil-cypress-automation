@@ -12,11 +12,12 @@ class CheckoutPage {
   }
 
   typeClientPreEmailProfile(clientPreEmail) {
-    cy.wait(10000)
-    cy.get(elCheckoutPage.inputClientPreEmail).then(($input) => {
-      cy.wrap($input).should('be.visible').focus()
-      cy.wrap($input).type(clientPreEmail)
-    })
+    cy.get(elCheckoutPage.inputClientPreEmail, { timeout: 15000 }).then(
+      ($input) => {
+        cy.wrap($input).should('be.visible').focus()
+        cy.wrap($input).type(clientPreEmail)
+      },
+    )
   }
 
   typeFirstNameProfile(firstName) {
@@ -65,15 +66,13 @@ class CheckoutPage {
   }
 
   typeZipCode(zipCode) {
-    cy.wait(5000)
-    cy.get(elCheckoutPage.inputZipCode)
+    cy.get(elCheckoutPage.inputZipCode, { timeout: 15000 })
       .last()
       .then(($input) => {
         cy.wrap($input).should('be.enabled').clear({ force: true })
         cy.wrap($input).focus()
         cy.wrap($input).type(zipCode, { force: true })
       })
-    cy.wait(3000)
   }
 
   typeFullNameShipping(fullName) {
@@ -81,11 +80,10 @@ class CheckoutPage {
   }
 
   typeCustomNumberShipping() {
-    cy.wait(5000)
     if (Cypress.env('environment') == 'mobile') {
       cy.scrollTo(0, 100)
     }
-    cy.get(elCheckoutPage.inputCustomNumber)
+    cy.get(elCheckoutPage.inputCustomNumber, { timeout: 15000 })
       .should('be.visible')
       .type('1111111111', { force: true })
   }

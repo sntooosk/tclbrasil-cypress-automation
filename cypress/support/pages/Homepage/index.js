@@ -33,25 +33,23 @@ class HomePage {
   }
 
   clickProductFromShelf() {
-    cy.wait(15000)
     if (Cypress.env('environment') == 'mobile') {
-      cy.wait(9000)
       cy.scrollTo(0, 1200)
-      cy.get(elHomepage.itemShelf).click({ force: true })
-      cy.wait(8000)
+      cy.get(elHomepage.itemShelf, { timeout: 20000 })
+        .should('be.visible')
+        .click({ force: true })
     } else if (Cypress.env('environment') == 'desktop') {
-      cy.wait(9000)
       cy.scrollTo(0, 1000)
-      cy.get(elHomepage.itemShelf).click({ force: true })
-      cy.wait(8000)
+      cy.get(elHomepage.itemShelf, { timeout: 20000 })
+        .should('be.visible')
+        .click({ force: true })
     }
   }
 
   scrollPage() {
-    cy.wait(5000)
     cy.scrollTo('bottom')
-    cy.wait(4000)
     cy.get(elHomepage.formFooterNewslleter).scrollIntoView()
+    cy.get(elHomepage.formFooterNewslleter).should('be.visible')
   }
 
   typeFirstNameProfile(firstName) {

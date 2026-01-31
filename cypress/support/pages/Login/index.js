@@ -17,7 +17,6 @@ class Login {
 
   clickBtnEnter() {
     cy.get(elLogin.btnEnter).should('be.visible').click({ force: true })
-    cy.wait(10000)
   }
 }
 export default new Login()

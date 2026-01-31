@@ -5,12 +5,14 @@ const elPdpPage = require('./elements').ELEMENTS
 class PdpPage {
   urlPDP(productLink) {
     cy.visit(productLink)
-    cy.wait(5000)
+    cy.get(elPdpPage.productName, { timeout: 15000 }).should('be.visible')
   }
 
   clickBtnAddToCart() {
-    cy.wait(5000)
-    cy.get(elPdpPage.buyButton).first().should('exist').click({ force: true })
+    cy.get(elPdpPage.buyButton, { timeout: 15000 })
+      .first()
+      .should('exist')
+      .click({ force: true })
   }
 
   clickConfirmModalVariation() {
@@ -18,17 +20,15 @@ class PdpPage {
       .first()
       .should('exist')
       .click({ force: true })
-    cy.wait(5000)
-    cy.get(elPdpPage.buttonConfirmModalVariation)
+    cy.get(elPdpPage.buttonConfirmModalVariation, { timeout: 15000 })
       .first()
       .should('exist')
       .click({ force: true })
   }
 
   typeZipCode(zipCode) {
-    cy.wait(1000)
     cy.get(elPdpPage.shipping.input).then(($input) => {
-      cy.wrap($input).focus()
+      cy.wrap($input).should('be.visible').focus()
       cy.wrap($input).clear()
       cy.wrap($input).type(zipCode, { force: true })
     })
@@ -82,7 +82,6 @@ class PdpPage {
     cy.get(elPdpPage.minishelfProduct)
       .should('be.visible')
       .click({ force: true })
-    cy.wait(5000)
   }
 
   typeNameNotification(firstName) {
@@ -123,12 +122,13 @@ class PdpPage {
   }
 
   clickTextPaymentOptionsModal() {
-    cy.wait(5000)
     if (Cypress.env('environment') == 'mobile') {
       cy.scrollTo(0, 600)
-      cy.wait(3000)
     }
-    cy.get(elPdpPage.textLinkPaymentOptionsModal).first().click({ force: true })
+    cy.get(elPdpPage.textLinkPaymentOptionsModal, { timeout: 15000 })
+      .first()
+      .should('be.visible')
+      .click({ force: true })
   }
 
   validatePaymentOptionsLanguage() {
